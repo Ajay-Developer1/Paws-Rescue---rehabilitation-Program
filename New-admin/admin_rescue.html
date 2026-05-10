@@ -922,44 +922,51 @@ View
 /* ===== SIDEBAR ===== */
 
 const menu = document.getElementById("menu");
+
 const sidebar = document.getElementById("sidebar");
+
 const main = document.querySelector(".main");
 
 menu.onclick = (e)=>{
 
-e.stopPropagation();
+  e.stopPropagation();
 
-sidebar.classList.toggle("closed");
-main.classList.toggle("full");
+  sidebar.classList.toggle("closed");
+
+  main.classList.toggle("full");
 
 };
 
 document.addEventListener("click",(e)=>{
 
-const insideSidebar = sidebar.contains(e.target);
-const isMenu = menu.contains(e.target);
+  const insideSidebar = sidebar.contains(e.target);
 
-if(!insideSidebar && !isMenu){
+  const isMenu = menu.contains(e.target);
 
-sidebar.classList.add("closed");
-main.classList.add("full");
+  if(!insideSidebar && !isMenu){
 
-}
+    sidebar.classList.add("closed");
+
+    main.classList.add("full");
+
+  }
 
 });
 
 sidebar.onclick = (e)=>{
-e.stopPropagation();
+
+  e.stopPropagation();
+
 };
 
 /* ===== CLOCK ===== */
 
 function updateClock(){
 
-const now = new Date();
+  const now = new Date();
 
-document.getElementById("clock").innerHTML =
-now.toLocaleTimeString();
+  document.getElementById("clock").innerHTML =
+  now.toLocaleTimeString();
 
 }
 
@@ -967,50 +974,88 @@ setInterval(updateClock,1000);
 
 updateClock();
 
-/* ===== FILTER ===== */
+/* ===== FILTER TABLE ===== */
 
-const searchInput = document.getElementById("searchInput");
-const statusSelect = document.getElementById("statusSelect");
-const locationSelect = document.getElementById("locationSelect");
+const searchInput =
+document.getElementById("searchInput");
 
-const rows = document.querySelectorAll("table tr");
+const statusSelect =
+document.getElementById("statusSelect");
+
+const locationSelect =
+document.getElementById("locationSelect");
+
+const rows =
+document.querySelectorAll("table tr");
 
 function filterTable(){
 
-const searchValue = searchInput.value.toLowerCase();
-const statusValue = statusSelect.value;
-const locationValue = locationSelect.value;
+  const searchValue =
+  searchInput.value.toLowerCase();
 
-rows.forEach((row,index)=>{
+  const statusValue =
+  statusSelect.value;
 
-if(index===0) return;
+  const locationValue =
+  locationSelect.value;
 
-const cells = row.querySelectorAll("td");
+  rows.forEach((row,index)=>{
 
-const caseText = cells[0].textContent.toLowerCase();
-const locationText = cells[1].textContent;
-const statusText = cells[4].textContent;
+    if(index===0) return;
 
-const matchSearch = caseText.includes(searchValue);
-const matchStatus = !statusValue || statusText===statusValue;
-const matchLocation = !locationValue || locationText===locationValue;
+    const cells =
+    row.querySelectorAll("td");
 
-row.style.display =
-(matchSearch && matchStatus && matchLocation)
-? ""
-: "none";
+    const caseText =
+    cells[1].textContent.toLowerCase();
 
-});
+    const locationText =
+    cells[2].textContent;
+
+    const statusText =
+    cells[5].textContent;
+
+    const matchSearch =
+    caseText.includes(searchValue);
+
+    const matchStatus =
+    !statusValue ||
+    statusText === statusValue;
+
+    const matchLocation =
+    !locationValue ||
+    locationText === locationValue;
+
+    row.style.display =
+    (matchSearch &&
+    matchStatus &&
+    matchLocation)
+    ? ""
+    : "none";
+
+  });
 
 }
 
-searchInput.addEventListener("input",filterTable);
-statusSelect.addEventListener("change",filterTable);
-locationSelect.addEventListener("change",filterTable);
+searchInput.addEventListener(
+"input",
+filterTable
+);
 
-/* ===== MODAL ===== */
+statusSelect.addEventListener(
+"change",
+filterTable
+);
 
-const modal = document.getElementById("caseModal");
+locationSelect.addEventListener(
+"change",
+filterTable
+);
+
+/* ===== CASE MODAL ===== */
+
+const modal =
+document.getElementById("caseModal");
 
 function openModal(
 title,
@@ -1031,55 +1076,142 @@ doctorText,
 emergencyText
 ){
 
-modal.style.display = "flex";
+  modal.style.display = "flex";
 
-document.getElementById("modalTitle").innerHTML = title;
+  document.getElementById(
+  "modalTitle"
+  ).innerHTML = title;
 
-document.getElementById("petImage").src = petImg;
+  document.getElementById(
+  "petImage"
+  ).src = petImg;
 
-document.getElementById("injuryImage").src = injuryImg;
+  document.getElementById(
+  "injuryImage"
+  ).src = injuryImg;
 
-document.getElementById("animalType").innerHTML = animal;
+  document.getElementById(
+  "animalType"
+  ).innerHTML = animal;
 
-document.getElementById("condition").innerHTML = conditionText;
+  document.getElementById(
+  "condition"
+  ).innerHTML = conditionText;
 
-document.getElementById("status").innerHTML = statusText;
+  document.getElementById(
+  "status"
+  ).innerHTML = statusText;
 
-document.getElementById("priority").innerHTML = priorityText;
+  document.getElementById(
+  "priority"
+  ).innerHTML = priorityText;
 
-document.getElementById("city").innerHTML = cityText;
+  document.getElementById(
+  "city"
+  ).innerHTML = cityText;
 
-document.getElementById("area").innerHTML = areaText;
+  document.getElementById(
+  "area"
+  ).innerHTML = areaText;
 
-document.getElementById("landmark").innerHTML = landmarkText;
+  document.getElementById(
+  "landmark"
+  ).innerHTML = landmarkText;
 
-document.getElementById("reporter").innerHTML = reporterText;
+  document.getElementById(
+  "reporter"
+  ).innerHTML = reporterText;
 
-document.getElementById("phone").innerHTML = phoneText;
+  document.getElementById(
+  "phone"
+  ).innerHTML = phoneText;
 
-document.getElementById("reportedTime").innerHTML = timeText;
+  document.getElementById(
+  "reportedTime"
+  ).innerHTML = timeText;
 
-document.getElementById("ngo").innerHTML = ngoText;
+  document.getElementById(
+  "ngo"
+  ).innerHTML = ngoText;
 
-document.getElementById("doctor").innerHTML = doctorText;
+  document.getElementById(
+  "doctor"
+  ).innerHTML = doctorText;
 
-document.getElementById("emergency").innerHTML = emergencyText;
+  document.getElementById(
+  "emergency"
+  ).innerHTML = emergencyText;
 
 }
 
 function closeModal(){
 
-modal.style.display = "none";
+  modal.style.display = "none";
 
 }
+
+/* ===== ASSIGN MODAL ===== */
+
+const assignModal =
+document.getElementById("assignModal");
+
+let currentCaseId = "";
+
+function openAssignModal(
+caseId,
+caseTitle
+){
+
+  currentCaseId = caseId;
+
+  assignModal.style.display = "flex";
+
+  document.getElementById(
+  "assignCaseTitle"
+  ).innerHTML =
+  "Assign member for " +
+  caseTitle +
+  " (" +
+  caseId +
+  ")";
+
+}
+
+function closeAssignModal(){
+
+  assignModal.style.display = "none";
+
+}
+
+/* ===== ASSIGN MEMBER ===== */
+
+function assignMember(memberName){
+
+  alert(
+  memberName +
+  " assigned successfully to " +
+  currentCaseId
+  );
+
+  assignModal.style.display = "none";
+
+}
+
+/* ===== CLOSE MODALS OUTSIDE CLICK ===== */
 
 window.onclick = function(e){
 
-if(e.target == modal){
+  if(e.target == modal){
 
-modal.style.display = "none";
+    modal.style.display = "none";
 
-}
+  }
+
+  if(e.target == assignModal){
+
+    assignModal.style.display = "none";
+
+  }
 
 };
 
