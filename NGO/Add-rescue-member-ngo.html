@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Rescue</title>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<link rel="stylesheet" href="./nav-bar.css">
+<link rel="stylesheet" href="./footer.css">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+ flex-direction: column;
+  background:#10305d;
+}
+main{
+    flex: 1;
+    margin: 6% 0px 0px 39.5%;
+}
+
+.container{
+  width:90%;
+  max-width:420px;
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  padding:30px;
+  color:#fff;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+
+.card h2{
+  text-align:center;
+  margin-bottom:20px;
+  font-weight:600;
+}
+
+.input-group{
+  margin-bottom:15px;
+}
+
+.input-group label{
+  font-size:14px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+  width:100%;
+  padding:12px;
+  border:none;
+  outline:none;
+  border-radius:10px;
+  margin-top:5px;
+  background:rgba(255,255,255,0.2);
+  color:#000000;
+  font-size:14px;
+}
+
+.input-group input::placeholder,
+textarea::placeholder{
+  color:#000000;
+}
+
+.input-group input:focus,
+textarea:focus,
+select:focus{
+  background:rgba(255,255,255,0.3);
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#44a9c2;
+  color:#631f1f;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#034caa;
+  transform:scale(1.03);
+}
+
+</style>
+</head>
+<script>
+document.getElementById("rescueForm").addEventListener("submit", function(e){
+
+  e.preventDefault(); // Stop actual form submission
+
+  alert("✅ Member Successfully Added!");
+
+  // Optional: clear form after submit
+  this.reset();
+
+});
+</script>
+<body>
+
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notifications.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./NGO-profile-image.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notifications.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./NGO-profile-image.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+
+<main>
+<div class="container">
+  <div class="card">
+
+    <h2>🐾 Add Rescue Member</h2>
+
+    <!-- FORM START -->
+    <div id="formContainer">
+
+  <form id="rescueForm">
+
+    <div class="input-group">
+      <label>Name</label>
+      <input type="text" name="name" placeholder="Enter full name" required>
+    </div>
+
+    <div class="input-group">
+      <label>Information</label>
+      <textarea name="info" rows="3" placeholder="Enter rescue details" required></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Age</label>
+      <input type="number" name="age" placeholder="Enter age" min="1" required>
+    </div>
+
+    <div class="input-group">
+      <label>Gender</label>
+      <select name="gender" required>
+        <option value="">Select gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Assign Email</label>
+      <input type="email" name="email" placeholder="Enter email" required>
+    </div>
+
+    <div class="input-group">
+      <label>Assign Password</label>
+      <input type="password" name="password" placeholder="Enter password" minlength="6" required>
+    </div>
+
+    <button type="submit">ADD Member</button>
+
+  </form>
+
+</div>
+  </div>
+</div>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById("rescueForm").addEventListener("submit", function(e){
+
+  e.preventDefault(); // stop page reload
+
+  document.getElementById("formContainer").innerHTML = `
+    <div style="text-align:center; padding:40px;">
+      <h2>✅ Rescue Member Added Successfully</h2>
+      <p>New rescue member has been assigned work.</p>
+    </div>
+  `;
+
+});
+</script>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

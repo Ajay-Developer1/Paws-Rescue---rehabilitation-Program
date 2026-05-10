@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws Rescue & RehabilitationProgram/Upload Medical Reports</title>
+  <link rel="stylesheet" href="./upload-medical-reports-ngo.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./user-profile-img.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./user-profile-img.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+<section class="upload-section">
+
+  <h1 class="section-title">Upload Medical Reports</h1>
+
+  <div class="upload-box">
+    <form>
+
+      <div class="form-group">
+        <label>Animal ID</label>
+        <input type="text" placeholder="Enter Animal ID">
+      </div>
+
+      <div class="form-group">
+        <label>Upload Reports</label>
+        <input type="file">
+      </div>
+
+      <div class="btn-container">
+        <button type="submit">Upload</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

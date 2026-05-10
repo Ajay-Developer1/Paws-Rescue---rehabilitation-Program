@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f8fafc;
+}
+main{
+  padding: 30px;
+  margin: 2% auto;
+}
+
+/* ===== TITLE ===== */
+.page-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-title h1 {
+  font-size: 3rem;
+  color: #10305d;
+}
+
+.page-title p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #334155;
+}
+
+/* ===== OPTIONS ===== */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.option-card {
+  background: #10305d;
+  color: white;
+  padding: 30px;
+  width: 280px;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-card:hover {
+  background: #0b2344;
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-section {
+  margin-bottom: 80px;
+}
+
+.content-section h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  color: #10305d;
+}
+
+.desc {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #475569;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e3a5f;
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+
+thead {
+  background: #10305d;
+}
+
+tbody tr {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.01);
+}
+
+/* ===== MINI OPTIONS ===== */
+.mini-options {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.mini-card {
+  background: #1e3a5f;
+  color: white;
+  padding: 25px;
+  border-radius: 18px;
+  width: 260px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mini-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* ===== ASSIGN BOX ===== */
+.assign-box {
+  max-width: 500px;
+  margin: auto;
+  background: #10305d;
+  padding: 35px;
+  border-radius: 25px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.assign-box h3 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.assign-box label {
+  display: block;
+  margin: 12px 0 5px;
+}
+
+.assign-box input,
+.assign-box select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.assign-box button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  background: #3278da;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.assign-box button:hover {
+  background: #3278da;
+  transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .options,
+  .mini-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-title h1 {
+    font-size: 2.2rem;
+  }
+}

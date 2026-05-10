@@ -1,0 +1,148 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== BODY ===== */
+body {
+  background-color: #ffffff; /* KEEP WHITE BACKGROUND */
+  color: #081b33;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main{
+  padding: 30px;
+  flex: 1;
+  margin-top: 5%;
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title h1 {
+  font-size: 32px;
+  color: #0f2a4d; /* Dark Blue */
+}
+
+.page-title p {
+  margin-top: 8px;
+  color: #334155; /* Slate blue / grayish-blue */
+}
+
+/* ===== MAIN CONTAINER ===== */
+.assign-container {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #f8fafc; /* Very light background for contrast */
+  padding: 30px;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== ANIMAL LIST ===== */
+.animal-list {
+  background-color: #0f2a4d; /* Dark Blue */
+  padding: 20px;
+  border-radius: 14px;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.animal-list h2 {
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.animal-card {
+  background-color: #334155; /* Slate blue */
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  border-left: 4px solid #081b33; /* Very dark blue accent */
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== ASSIGN BOX ===== */
+.assign-box {
+  background-color: #0f2a4d; /* Dark Blue */
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #081b33; /* Very dark blue */
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.assign-box h2 {
+  margin-bottom: 18px;
+  color: #ffffff;
+}
+
+.assign-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #cbd5e1; /* Light gray-blue for readability */
+}
+
+.assign-box input,
+.assign-box select {
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: 1px solid #334155; /* Slate blue border */
+  margin-bottom: 16px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #081b33;
+}
+
+.assign-box input:focus,
+.assign-box select:focus {
+  outline: none;
+  border-color: #081b33; /* Very dark blue */
+}
+
+/* ===== BUTTON ===== */
+.assign-box button {
+  width: 100%;
+  padding: 13px;
+  border-radius: 30px;
+  border: none;
+  background-color: #081b33; /* Very dark blue */
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.assign-box button:hover {
+  background-color: #334155; /* Slate blue hover */
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .assign-container {
+    grid-template-columns: 1fr;
+  }
+}

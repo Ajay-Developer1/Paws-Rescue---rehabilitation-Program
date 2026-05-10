@@ -1,0 +1,197 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program/Safe-Animal-Shelters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./safe-shelter-home.css">
+  <link rel="stylesheet" href="./navbar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<style>
+
+.map-section{
+width:100%;
+padding:40px;
+text-align:center;
+}
+
+.map-box{
+width:100%;
+max-width:800px;
+height:400px;
+margin:auto;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+</style>
+
+</head>
+<body>
+<!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="brand">
+    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <nav class="nav-links">
+    <a href="./homepage.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-home.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-home.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="../login.html">Login / Signup</a>
+  </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./homepage.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-home.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-home.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="../login.html">Login / Signup</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="shelter-hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Safe Animal Shelters</h1>
+    <p>Providing protection, care, and recovery for rescued animals</p>
+  </div>
+</section>
+
+<!-- ===== INFO ===== -->
+<section class="shelter-info">
+  <h2>Why Safe Shelters Matter</h2>
+  <p>
+    Safe shelters give rescued animals a protected environment after medical treatment.
+    They provide food, clean water, warmth, and monitoring until animals fully recover
+    or are ready for adoption.
+  </p>
+</section>
+
+<!-- ===== SHELTER LIST ===== -->
+<section class="shelter-list">
+
+  <div class="shelter-card">
+    <img src="https://i.postimg.cc/GmHrkx1p/shlter1.jpg" alt="Animal Shelter">
+    <h3>Blue Cross of Hydrabad</h3>
+    <p>📍 Turkapally Road, Near Shamirpet <br> Hydrabad, Telengana-500078</p>
+    <p>🏠 Temporary care & recovery</p>
+    <button onclick="openMap(
+    'Blue Cross of Hyderabad',
+    '📍 Turkapally Road, Near Shamirpet <br> Hyderabad, Telangana-500078',
+    'Blue Cross of Hyderabad Shamirpet'
+    )">View Shelter</button>
+  </div>
+
+  <div class="shelter-card">
+    <img src="https://i.postimg.cc/DzL9gCpf/shelter2.jpg" alt="Rescue Shelter">
+    <h3>People For Animals Hydrabad</h3>
+    <p>📍 Hydrabad, Telengana ( operates rescue across multiple areas)</p>
+    <p>🏠 Short-term care available</p>
+    <button onclick="openMap(
+    'People For Animals Hyderabad',
+    '📍 Hyderabad, Telangana',
+    'People For Animals Hyderabad'
+    )">View Shelter</button>
+  </div>
+
+  <div class="shelter-card">
+    <img src="https://i.postimg.cc/bN54jXKv/shelter3.jpg" alt="Pet Shelter">
+    <h3>Greater Hyderabad Municipal Corporation Animal Care Center</h3>
+    <p>📍 Hydrabad, Telengana</p>
+    <p>🏠 Recovery & Shelter</p>
+    <button onclick="openMap(
+    'GHMC Animal Care Center',
+    '📍 Hyderabad, Telangana',
+    'GHMC Animal Care Center Hyderabad'
+    )">View Shelter</button>
+  </div>
+
+</section>
+
+<!-- ===== MAP SECTION ===== -->
+<div class="map-section" id="mapSection">
+
+<h2 id="mapTitle">Blue Cross of Hyderabad</h2>
+
+<p id="mapAddress">
+📍 Turkapally Road, Near Shamirpet <br>
+Hyderabad, Telangana-500078
+</p>
+
+<div class="map-box">
+
+<iframe 
+id="mapFrame"
+src="https://maps.google.com/maps?q=Blue%20Cross%20of%20Hyderabad%20Shamirpet&t=&z=15&ie=UTF8&iwloc=&output=embed"
+width="100%" 
+height="100%" 
+style="border:0;"
+loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="./nav-bar.js"></script>
+
+<script>
+
+function openMap(title,address,location){
+
+let map = document.getElementById("mapFrame");
+
+map.src = "https://maps.google.com/maps?q="
++ encodeURIComponent(location)
++ "&t=&z=15&ie=UTF8&iwloc=&output=embed";
+
+document.getElementById("mapTitle").innerHTML = title;
+
+document.getElementById("mapAddress").innerHTML = address;
+
+document.getElementById("mapSection").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>

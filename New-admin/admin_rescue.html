@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue Cases</title>
+
+<link rel="stylesheet" href="./Header and nav.css">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#1e4fa1,#4b7bec);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== MAIN ===== */
+
+.main{
+  padding:20px;
+  margin-left:260px;
+  width:calc(100% - 260px);
+  transition:0.3s;
+}
+
+.main.full{
+  margin-left:0;
+  width:100%;
+}
+
+
+
+.logo-image{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:20px;
+  font-weight:bold;
+  color:#1e4fa1;
+}
+
+.logo-image img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.profile-img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.notification{
+  font-size:22px;
+  cursor:pointer;
+}
+
+#clock{
+  font-weight:bold;
+}
+
+/* ===== CARDS ===== */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.card{
+  color:white;
+  padding:20px;
+  border-radius:15px;
+}
+
+.card h2{
+  margin-top:10px;
+}
+
+.orange{
+  background:#f39c12;
+}
+
+.red{
+  background:#e74c3c;
+}
+
+.blue{
+  background:#3498db;
+}
+
+.green{
+  background:#16a085;
+}
+
+/* ===== FILTERS ===== */
+
+.filters{
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.filters input,
+.filters select{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  outline:none;
+}
+
+/* ===== TABLE ===== */
+
+.table{
+  margin-top:20px;
+  background:white;
+  border-radius:15px;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#1e4fa1;
+  color:white;
+}
+
+th,td{
+  padding:15px;
+  text-align:left;
+  border-bottom:1px solid #eee;
+}
+
+/* ===== STATUS ===== */
+
+.status{
+  padding:6px 12px;
+  border-radius:20px;
+  color:white;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.pending{
+  background:#f39c12;
+}
+
+.progress{
+  background:#3498db;
+}
+
+.done{
+  background:#2ecc71;
+}
+
+/* ===== PRIORITY ===== */
+
+.priority{
+  padding:5px 10px;
+  border-radius:20px;
+  color:white;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.high{
+  background:#e74c3c;
+}
+
+.medium{
+  background:#f39c12;
+}
+
+.low{
+  background:#2ecc71;
+}
+
+/* ===== BUTTON ===== */
+
+button{
+  padding:8px 14px;
+  border:none;
+  border-radius:10px;
+  background:#3498db;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* ===== MODAL ===== */
+
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  padding:20px;
+}
+
+.modal-content{
+  background:white;
+  width:100%;
+  max-width:750px;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.modal-header{
+  background:#1e4fa1;
+  color:white;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close{
+  font-size:30px;
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:20px;
+}
+
+.image-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.image-grid img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+.info-box{
+  background:#f5f7ff;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.info-box h3{
+  color:#1e4fa1;
+  margin-bottom:10px;
+}
+
+.info-box p{
+  margin:6px 0;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+  transition:0.3s;
+}
+
+.sidebar.closed{
+  transform:translateX(-100%);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .filters{
+    flex-direction:column;
+  }
+
+  .filters input,
+  .filters select{
+    width:100%;
+  }
+
+  .image-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* ===== MODAL ===== */
+
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.65);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  padding:20px;
+  overflow-y:auto;
+}
+
+.modal-content{
+  background:white;
+  width:100%;
+  max-width:850px;
+  border-radius:22px;
+  overflow:hidden;
+  animation:popup 0.3s ease;
+  max-height:95vh;
+  display:flex;
+  flex-direction:column;
+}
+
+@keyframes popup{
+
+  from{
+    transform:scale(0.9);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+
+}
+
+.modal-header{
+  background:linear-gradient(135deg,#1e4fa1,#4b7bec);
+  color:white;
+  padding:18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.modal-header h2{
+  font-size:24px;
+}
+
+.close{
+  font-size:32px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.close:hover{
+  transform:rotate(90deg);
+}
+
+.modal-body{
+  padding:25px;
+  overflow-y:auto;
+}
+
+/* ===== IMAGES ===== */
+
+.image-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.image-grid img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.12);
+}
+
+/* ===== INFO BOX ===== */
+
+.info-box{
+  background:#f7f9ff;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:18px;
+  border-left:5px solid #1e4fa1;
+}
+
+.info-box h3{
+  color:#1e4fa1;
+  margin-bottom:14px;
+  font-size:19px;
+}
+
+.info-box p{
+  margin:10px 0;
+  font-size:15px;
+  color:#333;
+  line-height:1.5;
+}
+
+.info-box strong{
+  color:#111;
+}
+
+/* ===== CUSTOM SCROLL ===== */
+
+.modal-body::-webkit-scrollbar{
+  width:8px;
+}
+
+.modal-body::-webkit-scrollbar-thumb{
+  background:#1e4fa1;
+  border-radius:10px;
+}
+
+.modal-body::-webkit-scrollbar-track{
+  background:#eee;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+  .modal{
+    padding:10px;
+  }
+
+  .modal-content{
+    max-height:98vh;
+    border-radius:18px;
+  }
+
+  .modal-header{
+    padding:15px;
+  }
+
+  .modal-header h2{
+    font-size:20px;
+  }
+
+  .modal-body{
+    padding:15px;
+  }
+
+  .image-grid{
+    grid-template-columns:1fr;
+  }
+
+  .image-grid img{
+    height:220px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar" id="sidebar">
+
+<h2 class="logo">
+<img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+PAWS
+</h2>
+
+<a href="admin_dashboard.html">Dashboard</a>
+<a href="admin_rescue.html" class="active">Rescue Cases</a>
+<a href="admin_add_ngo.html">NGOs</a>
+<a href="medical_care.html">Medical Care</a>
+<a href="./admin_adoption.html">Adoption</a>
+<a href="./admin_shelter.html">Shelters</a>
+<a href="./admin_Manage_users.html">Manage Users</a>
+
+<div class="sidebar-bottom">
+
+<button class="logout-btn">
+🚪 Logout
+</button>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="header-left">
+
+<span class="menu" id="menu">☰</span>
+
+<div class="logo-image">
+<img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg">
+PAWS RESCUE
+</div>
+
+</div>
+
+<div class="header-right">
+
+<div id="clock"></div>
+
+<div class="notification">🔔</div>
+
+<img src="https://i.postimg.cc/13R6TS5d/4th-hokage-PNG.webp" class="profile-img">
+
+</div>
+
+</div>
+
+<!-- CARDS -->
+
+<div class="cards">
+
+<div class="card orange">
+Pending
+<h2>9</h2>
+</div>
+
+<div class="card red">
+In Progress
+<h2>7</h2>
+</div>
+
+<div class="card blue">
+Rescued
+<h2>11</h2>
+</div>
+
+<div class="card green">
+Adoption
+<h2>4</h2>
+</div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="filters">
+
+<input type="text" id="searchInput" placeholder="Search cases...">
+
+<select id="statusSelect">
+<option value="">All Status</option>
+<option value="Pending">Pending</option>
+<option value="In Progress">In Progress</option>
+<option value="Rescued">Rescued</option>
+</select>
+
+<select id="locationSelect">
+<option value="">All Locations</option>
+<option value="Downtown">Downtown</option>
+<option value="Park">Park</option>
+<option value="City Market">City Market</option>
+<option value="Highway Road">Highway Road</option>
+</select>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table">
+
+<table>
+
+<tr>
+<th>Case</th>
+<th>Location</th>
+<th>Reporter</th>
+<th>Priority</th>
+<th>Status</th>
+<th>Time</th>
+<th>View</th>
+</tr>
+
+<tr>
+<td>Injured cat</td>
+<td>Downtown</td>
+<td>Ajay</td>
+<td><span class="priority high">High</span></td>
+<td><span class="status pending">Pending</span></td>
+<td>15 min</td>
+<td>
+<button onclick="openModal(
+'Injured Cat',
+'https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1000&auto=format&fit=crop',
+'Cat',
+'Leg Injury',
+'Pending',
+'High',
+'Hyderabad',
+'Banjara Hills',
+'Near Metro Station',
+'Ajay',
+'+91 9876543210',
+'15 Minutes Ago',
+'PAWS Rescue',
+'Dr. Sharma',
+'Medium'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Stray dog</td>
+<td>Park</td>
+<td>Srinath</td>
+<td><span class="priority medium">Medium</span></td>
+<td><span class="status progress">In Progress</span></td>
+<td>30 min</td>
+<td>
+<button onclick="openModal(
+'Stray Dog',
+'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1000&auto=format&fit=crop',
+'Dog',
+'Body Infection',
+'In Progress',
+'Medium',
+'Hyderabad',
+'Madhapur',
+'Near Bus Stop',
+'Srinath',
+'+91 9123456780',
+'30 Minutes Ago',
+'PAWS Rescue',
+'Dr. Reddy',
+'High'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Injured puppy</td>
+<td>City Market</td>
+<td>Rahul</td>
+<td><span class="priority high">High</span></td>
+<td><span class="status pending">Pending</span></td>
+<td>10 min</td>
+<td>
+<button onclick="openModal(
+'Injured Puppy',
+'https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop',
+'Dog',
+'Leg Fracture',
+'Pending',
+'High',
+'Hyderabad',
+'Kukatpally',
+'Near Shopping Mall',
+'Rahul',
+'+91 9988776655',
+'10 Minutes Ago',
+'PAWS Rescue',
+'Dr. Kiran',
+'High'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Bird with broken wing</td>
+<td>Lake Area</td>
+<td>Meghana</td>
+<td><span class="priority medium">Medium</span></td>
+<td><span class="status progress">In Progress</span></td>
+<td>25 min</td>
+<td>
+<button onclick="openModal(
+'Bird Rescue',
+'https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1501706362039-c6e13b4a3a16?q=80&w=1000&auto=format&fit=crop',
+'Bird',
+'Broken Wing',
+'In Progress',
+'Medium',
+'Hyderabad',
+'Hitech City',
+'Near Lake View Park',
+'Meghana',
+'+91 9011223344',
+'25 Minutes Ago',
+'PAWS Rescue',
+'Dr. Swetha',
+'Medium'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Cat stuck in drain</td>
+<td>Old Town</td>
+<td>Arjun</td>
+<td><span class="priority high">High</span></td>
+<td><span class="status pending">Pending</span></td>
+<td>5 min</td>
+<td>
+<button onclick="openModal(
+'Cat Rescue',
+'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1000&auto=format&fit=crop',
+'Cat',
+'Minor Injuries',
+'Pending',
+'High',
+'Hyderabad',
+'Charminar',
+'Near Main Road Drain',
+'Arjun',
+'+91 9121212121',
+'5 Minutes Ago',
+'PAWS Rescue',
+'Dr. Ali',
+'High'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Injured cow</td>
+<td>Village Area</td>
+<td>Ravi</td>
+<td><span class="priority medium">Medium</span></td>
+<td><span class="status progress">In Progress</span></td>
+<td>40 min</td>
+<td>
+<button onclick="openModal(
+'Cow Rescue',
+'https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=1000&auto=format&fit=crop',
+'Cow',
+'Foot Injury',
+'In Progress',
+'Medium',
+'Hyderabad',
+'Shamshabad',
+'Near Highway',
+'Ravi',
+'+91 9345678912',
+'40 Minutes Ago',
+'PAWS Rescue',
+'Dr. Naresh',
+'Medium'
+)">
+View
+</button>
+</td>
+</tr>
+
+<tr>
+<td>Dog hit by bike</td>
+<td>Main Road</td>
+<td>Priya</td>
+<td><span class="priority high">High</span></td>
+<td><span class="status done">Rescued</span></td>
+<td>1 hr</td>
+<td>
+<button onclick="openModal(
+'Dog Rescue',
+'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1000&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop',
+'Dog',
+'Head Injury',
+'Rescued',
+'High',
+'Hyderabad',
+'Ameerpet',
+'Near Signal',
+'Priya',
+'+91 9887766554',
+'1 Hour Ago',
+'PAWS Rescue',
+'Dr. Manoj',
+'Critical'
+)">
+View
+</button>
+</td>
+</tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="caseModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h2 id="modalTitle">Case Information</h2>
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+</div>
+
+<div class="modal-body">
+
+<div class="image-grid">
+
+<img id="petImage" src="">
+
+<img id="injuryImage" src="">
+
+</div>
+
+<div class="info-box">
+
+<h3>Animal Information</h3>
+
+<p><strong>Animal:</strong> <span id="animalType"></span></p>
+
+<p><strong>Condition:</strong> <span id="condition"></span></p>
+
+<p><strong>Status:</strong> <span id="status"></span></p>
+
+<p><strong>Priority:</strong> <span id="priority"></span></p>
+
+</div>
+
+<div class="info-box">
+
+<h3>Location Details</h3>
+
+<p><strong>City:</strong> <span id="city"></span></p>
+
+<p><strong>Area:</strong> <span id="area"></span></p>
+
+<p><strong>Landmark:</strong> <span id="landmark"></span></p>
+
+</div>
+
+<div class="info-box">
+
+<h3>Reporter Information</h3>
+
+<p><strong>Name:</strong> <span id="reporter"></span></p>
+
+<p><strong>Phone:</strong> <span id="phone"></span></p>
+
+<p><strong>Reported Time:</strong> <span id="reportedTime"></span></p>
+
+</div>
+
+<div class="info-box">
+
+<h3>Medical Information</h3>
+
+<p><strong>Assigned NGO:</strong> <span id="ngo"></span></p>
+
+<p><strong>Medical Team:</strong> <span id="doctor"></span></p>
+
+<p><strong>Emergency Level:</strong> <span id="emergency"></span></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ===== SIDEBAR ===== */
+
+const menu = document.getElementById("menu");
+const sidebar = document.getElementById("sidebar");
+const main = document.querySelector(".main");
+
+menu.onclick = (e)=>{
+
+e.stopPropagation();
+
+sidebar.classList.toggle("closed");
+main.classList.toggle("full");
+
+};
+
+document.addEventListener("click",(e)=>{
+
+const insideSidebar = sidebar.contains(e.target);
+const isMenu = menu.contains(e.target);
+
+if(!insideSidebar && !isMenu){
+
+sidebar.classList.add("closed");
+main.classList.add("full");
+
+}
+
+});
+
+sidebar.onclick = (e)=>{
+e.stopPropagation();
+};
+
+/* ===== CLOCK ===== */
+
+function updateClock(){
+
+const now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/* ===== FILTER ===== */
+
+const searchInput = document.getElementById("searchInput");
+const statusSelect = document.getElementById("statusSelect");
+const locationSelect = document.getElementById("locationSelect");
+
+const rows = document.querySelectorAll("table tr");
+
+function filterTable(){
+
+const searchValue = searchInput.value.toLowerCase();
+const statusValue = statusSelect.value;
+const locationValue = locationSelect.value;
+
+rows.forEach((row,index)=>{
+
+if(index===0) return;
+
+const cells = row.querySelectorAll("td");
+
+const caseText = cells[0].textContent.toLowerCase();
+const locationText = cells[1].textContent;
+const statusText = cells[4].textContent;
+
+const matchSearch = caseText.includes(searchValue);
+const matchStatus = !statusValue || statusText===statusValue;
+const matchLocation = !locationValue || locationText===locationValue;
+
+row.style.display =
+(matchSearch && matchStatus && matchLocation)
+? ""
+: "none";
+
+});
+
+}
+
+searchInput.addEventListener("input",filterTable);
+statusSelect.addEventListener("change",filterTable);
+locationSelect.addEventListener("change",filterTable);
+
+/* ===== MODAL ===== */
+
+const modal = document.getElementById("caseModal");
+
+function openModal(
+title,
+petImg,
+injuryImg,
+animal,
+conditionText,
+statusText,
+priorityText,
+cityText,
+areaText,
+landmarkText,
+reporterText,
+phoneText,
+timeText,
+ngoText,
+doctorText,
+emergencyText
+){
+
+modal.style.display = "flex";
+
+document.getElementById("modalTitle").innerHTML = title;
+
+document.getElementById("petImage").src = petImg;
+
+document.getElementById("injuryImage").src = injuryImg;
+
+document.getElementById("animalType").innerHTML = animal;
+
+document.getElementById("condition").innerHTML = conditionText;
+
+document.getElementById("status").innerHTML = statusText;
+
+document.getElementById("priority").innerHTML = priorityText;
+
+document.getElementById("city").innerHTML = cityText;
+
+document.getElementById("area").innerHTML = areaText;
+
+document.getElementById("landmark").innerHTML = landmarkText;
+
+document.getElementById("reporter").innerHTML = reporterText;
+
+document.getElementById("phone").innerHTML = phoneText;
+
+document.getElementById("reportedTime").innerHTML = timeText;
+
+document.getElementById("ngo").innerHTML = ngoText;
+
+document.getElementById("doctor").innerHTML = doctorText;
+
+document.getElementById("emergency").innerHTML = emergencyText;
+
+}
+
+function closeModal(){
+
+modal.style.display = "none";
+
+}
+
+window.onclick = function(e){
+
+if(e.target == modal){
+
+modal.style.display = "none";
+
+}
+
+};
+
+</script>
+
+</body>
+</html>

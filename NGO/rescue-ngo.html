@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws Rescue & Rehabilitation Program/Rescue Reports</title>
+  <link rel="stylesheet" href="./rescue-ngo.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./user-profile-img.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>vContact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./user-profile-img.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+<!-- ===== TITLE ===== -->
+<section class="page-title">
+  <h1>Rescue Reports</h1>
+  <p>Track rescued animals and assign rescue teams</p>
+</section>
+
+<!-- ===== TOP OPTIONS ===== -->
+<section class="options">
+  <div class="option-card" onclick="scrollToSection('rescueAnimals')">
+    <h2>🐾 Rescue Animals</h2>
+    <p>View reported and rescued animals</p>
+  </div>
+
+  <div class="option-card" onclick="scrollToSection('assignRescue')">
+    <h2>🚑 Assign Rescue Team</h2>
+    <p>Allocate teams and doctors</p>
+  </div>
+</section>
+
+<!-- ===== RESCUE ANIMALS ===== -->
+<section class="content-section" id="rescueAnimals">
+  <h2>Rescue Animals</h2>
+  <p class="desc">
+    List of animals that are reported or already rescued with live status.
+  </p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Animal</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A001</td>
+          <td>Dog</td>
+          <td>20-01-2026</td>
+          <td>Main Road</td>
+          <td>Rescued</td>
+        </tr>
+        <tr>
+          <td>A002</td>
+          <td>Cat</td>
+          <td>21-01-2026</td>
+          <td>Market Area</td>
+          <td>In Treatment</td>
+        </tr>
+        <tr>
+          <td>A003</td>
+          <td>Cow</td>
+          <td>22-01-2026</td>
+          <td>Highway</td>
+          <td>Pending</td>
+        </tr>
+        <tr>
+          <td>A004</td>
+          <td>Puppy</td>
+          <td>23-01-2026</td>
+          <td>Bus Stand</td>
+          <td>Assigned</td>
+        </tr>
+        <tr>
+          <td>A005</td>
+          <td>Bird</td>
+          <td>24-01-2026</td>
+          <td>Park Area</td>
+          <td>Under Care</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== ASSIGN RESCUE TEAM ===== -->
+<section class="content-section" id="assignRescue">
+  <h2>Assign Rescue Team</h2>
+  <p class="desc">
+    Assign doctors and rescue teams for faster medical attention.
+  </p>
+
+  <div class="assign-box">
+    <h3>Assign Rescue Team</h3>
+
+    <label>Animal ID</label>
+    <input type="text" placeholder="Enter Animal ID">
+
+    <label>Diagnosois</label>
+    <input type="text" placeholder="Enter Doctor Name">
+
+    <label>Rescue Team</label>
+    <select>
+      <option>Select Team</option>
+      <option>Team Alpha</option>
+      <option>Team Bravo</option>
+      <option>Team Delta</option>
+    </select>
+
+    <button>Assign Team</button>
+  </div>
+</section>
+</main>
+<script>
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+</script>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+
+</body>
+</html>

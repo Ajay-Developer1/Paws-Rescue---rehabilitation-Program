@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adopted Pet Upload</title>
+<link rel="stylesheet" href="./nav-bar.css">
+<link rel="stylesheet" href="./footer.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<style>
+
+/* Page Background */
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:white;
+    display:flex;
+    flex-direction: column;
+    min-height:100vh;
+    /* padding:20px; */
+}
+main{
+    flex: 1;
+    margin: 9% 0 0 40%;
+}
+/* Card */
+.card{
+    background:#3e5472b9;
+    width:100%;
+    max-width:400px;   /* responsive width */
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.card h2{
+    text-align:center;
+    color:#13a1da;
+    margin-bottom:20px;
+}
+
+/* Labels */
+label{
+    font-weight:600;
+    font-size:14px;
+    color:#fff; /* better visibility on dark background */
+}
+
+/* Inputs */
+input, select{
+    width:90%;
+    padding:11px;
+    margin-top:6px;
+    margin-bottom:14px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    outline:none;
+    transition:0.3s;
+    font-size:14px;
+}
+
+input:focus, select:focus{
+    border-color:#232a6e;
+    box-shadow:0 0 6px rgba(19,56,219,0.3);
+}
+
+/* Upload Box */
+.file-box{
+    border:2px dashed #a5d6a7;
+    padding:12px;
+    text-align:center;
+    border-radius:10px;
+    background:#f9fff9;
+    margin-bottom:15px;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#2d2c77;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#0c033d;
+    transform:scale(1.02);
+}
+
+/* Responsive adjustments */
+@media (max-width:480px){
+    .card{
+        padding:20px;
+    }
+
+    .card h2{
+        font-size:18px;
+    }
+
+    input, select{
+        padding:10px;
+        font-size:13px;
+    }
+
+    button{
+        font-size:14px;
+        padding:11px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+    <header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./NGO-profile-image.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-home.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./NGO-profile-image.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+
+<main>
+<div class="card">
+    <h2>🐾 Adopted Pet Details</h2>
+
+    <form action="#" method="POST">
+
+        <label for="petname">Pet Name</label>
+        <input id="petname" type="text" name="petname" placeholder="Enter pet name" required>
+        <br>
+        <label for="petage">Pet Age</label>
+        <input id="petage" type="number" name="petage" placeholder="Enter pet age" min="0" required>
+        <br>
+        <label for="petage">Pet Type</label>
+        <input id="petage" type="text" name="pet-type" placeholder="Enter pet type" min="0" required>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <label for="petimage">Upload Pet Image</label>
+        <br>
+        <div class="file-box">
+            <input id="petimage" type="file" name="petimage" accept="image/*" required>
+        </div>
+
+        <button type="submit">Upload Adopted Pet</button>
+
+    </form>
+</div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

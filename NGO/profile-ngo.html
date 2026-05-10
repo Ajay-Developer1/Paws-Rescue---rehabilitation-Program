@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program / User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./profile.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+</head>
+
+<body>
+
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="#"><img src="./user-profile-img.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue &<br>Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="#" style="display: flex;"><img src="./user-profile-img.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main>
+  <div class="profile-wrapper">
+
+    <div class="profile-card">
+
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="profile-image">
+          <img src="./NGO-profile-image.png" alt="User Profile" id="profile-img">
+        </div>
+        <h2 id="name">srinath</h2>
+        <p class="role">NGO animal Welfare</p>
+      </div>
+
+      <!-- Profile Details -->
+      <div class="profile-details">
+        <div class="detail">
+          <span>Email</span>
+          <p id="Email">srinath@gmail.com</p>
+        </div>
+
+        <div class="detail">
+          <span>Phone</span>
+          <p id="Phone-Number">+91 XXXXXXXX23</p>
+        </div>
+
+        <div class="detail">
+          <span>Location</span>
+          <p id="Location">Hyderabad, Telangana</p>
+        </div>
+
+        <div class="detail">
+          <span>Joined On</span>
+          <p>January 2026</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="profile-actions">
+        <a href="./homepage.html">
+          <button class="logout-btn">Logout</button>
+        </a>
+        <button class="logout-btn" onclick="EditProfile()">Edit Profile</button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===== EDIT PROFILE MODAL ===== -->
+<div id="edit-profile">
+  <div class="form-card">
+    <h1>Edit Profile</h1>
+    <p class="subtitle">Update your information</p>
+
+    <form>
+      <div class="input-group">
+        <label>Name</label>
+        <input type="text" id="Name-input" placeholder="Enter your name">
+      </div>
+
+      <div class="input-group">
+        <label>Upload Profile Picture</label>
+        <input type="file" id="Upload-profile-picture-input" accept="image/*">
+      </div>
+
+      <div class="input-group">
+        <label>Phone Number</label>
+        <input type="tel" id="phone-number-input" placeholder="Enter phone number">
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email-input" placeholder="Enter email address">
+      </div>
+
+      <div class="input-group">
+        <label>Location</label>
+        <input type="text" id="location-input" placeholder="Enter your location">
+      </div>
+
+      <button type="button" class="submit-btn" onclick="updateDetails()">
+        Update Profile
+      </button>
+      <button type="button" class="submit-btn" onclick="EditProfile()">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <p>© 2026 My Project. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="./nav-bar.js"></script>
+
+<script>
+  function EditProfile() {
+    const modal = document.getElementById("edit-profile");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+  }
+
+  function updateDetails() {
+    document.getElementById("name").textContent =
+      document.getElementById("Name-input").value;
+
+    document.getElementById("Email").textContent =
+      document.getElementById("email-input").value;
+
+    document.getElementById("Phone-Number").textContent =
+      document.getElementById("phone-number-input").value;
+
+    document.getElementById("Location").textContent =
+      document.getElementById("location-input").value;
+
+    const file = document.getElementById("Upload-profile-picture-input").files[0];
+    if (file) {
+      const profileImg = document.getElementById("profile-img");
+      profileImg.src = URL.createObjectURL(file);
+    }
+
+    EditProfile();
+  }
+</script>
+
+</body>
+</html>

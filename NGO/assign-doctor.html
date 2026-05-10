@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program/Assign Doctor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assign-doctor.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./NGO-profile-image.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./NGO-profile-image.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+  <!-- ===== PAGE TITLE ===== -->
+  <section class="page-title">
+    <h1>Assign Doctor</h1>
+    <p>Allocate doctors to rescued animals for medical care</p>
+  </section>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <section class="assign-container">
+
+    <!-- LEFT SIDE: RESCUED ANIMALS -->
+    <div class="animal-list">
+      <h2>Rescue Animals</h2>
+
+      <div class="animal-card">
+        <span>ID 1</span>
+        <p>Dog</p>
+      </div>
+
+      <div class="animal-card">
+        <span>ID 2</span>
+        <p>Cat</p>
+      </div>
+
+      <div class="animal-card">
+        <span>ID 3</span>
+        <p>Parrot</p>
+      </div>
+
+      <div class="animal-card">
+        <span>ID 4</span>
+        <p>Cow</p>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: ASSIGN DOCTOR -->
+    <div class="assign-box">
+      <h2>Assign Doctor</h2>
+      <form action="">
+      <label for="animalId">Animal ID</label>
+      <input type="text" id="animalId" placeholder="Enter Animal ID">
+
+      <label for="doctor">Select Doctor</label>
+      <select id="doctor">
+        <option value="">Select Doctor</option>
+        <option>Dr. Arjun</option>
+        <option>Dr. Meena</option>
+        <option>Dr. Rahul</option>
+        <option>Dr. Sneha</option>
+      </select>
+
+      <button type="submit">Assign</button>
+      </form>
+    </div>
+  </section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

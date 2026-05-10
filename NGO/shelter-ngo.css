@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f8fafc;
+}
+
+main {
+  padding: 30px;
+  margin-top: 3%;
+}
+
+/* ===== TITLE ===== */
+.page-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-title h1 {
+  font-size: 3rem;
+  color: #10305d;
+}
+
+/* ===== OPTIONS ===== */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 70px;
+}
+
+.option-card {
+  background: #10305d;
+  color: white;
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-card:hover {
+  background: #0b2344;
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-section {
+  margin-bottom: 90px;
+}
+
+.content-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #10305d;
+  margin-bottom: 30px;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e3a5f;
+  color: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+
+thead {
+  background: #10305d;
+}
+
+tbody tr {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.01);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-title h1 {
+    font-size: 2.2rem;
+  }
+}

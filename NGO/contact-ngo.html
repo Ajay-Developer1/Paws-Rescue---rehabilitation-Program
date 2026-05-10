@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws Rescue & Rehabilitation/Contact Us - Project Paws</title>
+  <link rel="stylesheet" href="contact-ngo.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+</head>
+<body>
+<!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="#"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./NGO-profile-image.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="#"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./NGO-profile-image.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+<section class="contact-section"> 
+    <div class="contact-container">
+        <!-- Image on left -->
+        <div class="contact-image">
+            <img src="./cat-contact-us.jpg" alt="Contact Us">
+        </div>
+
+        <!-- Form on right -->
+        <form class="contact-form">
+            <h1>Contact Us</h1>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name..." required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email..." required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" placeholder="Subject..." required>
+
+            <label for="receiver">Receiver:</label>
+            <select id="receiver">
+                <option value="">Select Receiver</option>
+                <option value="admin">Admin</option>
+                <option value="ngos">NGOs</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" placeholder="Write your message..." rows="5" required></textarea>
+
+            <button type="submit" class="send-button">Send</button>
+        </form>
+    </div>
+</section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

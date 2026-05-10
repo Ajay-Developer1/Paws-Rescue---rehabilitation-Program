@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program/Shelter Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="shelter-ngo.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+<style>
+  /* Section Base */
+.section{
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+/* Card Design */
+.card{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  background: #1e3a5f;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+  transition: 0.3s ease;
+}
+
+/* Hover Effect */
+.card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.card img{
+  width: 300px;
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+/* Text Info */
+.info{
+  flex: 1;
+}
+
+.info h2{
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #fcfcfc;
+}
+
+.info p{
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #7bd1f8;
+  line-height: 1.6;
+}
+
+/* Button */
+.info button{
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #10255e;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.info button:hover{
+  background: #1153ce;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .card{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card img{
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="./logo.png" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile-ngo.html"><img src="./user-profile-img.png" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="./logo.png" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./home-page-ngo.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-ngo.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-ngo.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-ngo.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile-ngo.html" style="display: flex;"><img src="./user-profile-img.png" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+<!-- ===== PAGE TITLE ===== -->
+<section class="page-title">
+  <h1>Shelter</h1>
+</section>
+
+<!-- ===== OPTIONS ===== -->
+<section class="options">
+  <div class="option-card" onclick="scrollToSection('Addshelters')">
+    <h2>Add Animal Shelters</h2>
+    <br>
+    <p>Add shelters for injured animals</p>
+  </div>
+
+  <div class="option-card" onclick="scrollToSection('newlyRescued')">
+    <h2>Newly Rescued Animals</h2>
+    <p>View animals recently moved to shelters</p>
+  </div>
+
+  <div class="option-card" onclick="scrollToSection('moveShelter')">
+    <h2>Move Shelters Between</h2>
+    <p>Transfer animals between shelters</p>
+  </div>
+
+</section>
+
+<!-- ===== SHELTERS ===== -->
+<section class="section card shelter" id="Addshelters">
+  <img src="./shelter.png" alt="Animal shelter">
+  <div class="info">
+    <h2>Add Safe Shelters</h2>
+    <p>
+      Shelters give rescued animals a safe place to rest, recover,
+      and stay protected until they are adopted.
+    </p>
+    <a href="./addanimal-shelter-ngo.html"><button>Add Shelters</button></a>
+  </div>
+</section>
+
+<!-- ===== NEWLY RESCUED ANIMALS ===== -->
+<section class="content-section" id="newlyRescued">
+  <h2>Newly Rescued Animals</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Animal</th>
+          <th>Date</th>
+          <th>Shelter Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dog</td>
+          <td>20-01-2026</td>
+          <td>Pets Organization</td>
+          <td>Good</td>
+        </tr>
+        <tr>
+          <td>Cat</td>
+          <td>21-01-2026</td>
+          <td>Safe Paws Shelter</td>
+          <td>Under Observation</td>
+        </tr>
+        <tr>
+          <td>Cow</td>
+          <td>22-01-2026</td>
+          <td>Green Farm Shelter</td>
+          <td>Stable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== MOVE SHELTERS BETWEEN ===== -->
+<section class="content-section" id="moveShelter">
+  <h2>Move Shelters Between</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Animal</th>
+          <th>Shelter From</th>
+          <th>Shelter To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Dog</td>
+          <td>City Shelter</td>
+          <td>Pets Organization</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Cat</td>
+          <td>Safe Paws</td>
+          <td>Care Haven</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Cow</td>
+          <td>Village Shelter</td>
+          <td>Green Farm</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+</script>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+</body>
+</html>

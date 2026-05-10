@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program/Adoption Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pet-application-form.css">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./user-home-page.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./user-aboutus.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./user-contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-user.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot"></span>
+    </a>
+    <a href="./profile.html"><img src="https://i.postimg.cc/hjWXK1Mv/killuva.jpg" alt="" width="10%"></a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+      <h1>Paws Rescue &<br>Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="user-home-page.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./user-aboutus.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./user-contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="./notification-user.html" class="notification-icon">
+    <i class="fa-solid fa-bell"></i>
+    <span class="notif-dot">notifications</span>
+    </a>
+    <a href="./profile.html" style="display: flex;"><img src="https://i.postimg.cc/hjWXK1Mv/killuva.jpg" alt="" width="10%" >ajay.example@gmail.com</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+  <div class="application-wrapper">
+
+    <form class="application-card">
+
+      <h2>Pet Adoption Application</h2>
+      <p class="subtitle">
+        Help us find a loving and responsible home for our rescued animals.
+      </p>
+
+      <!-- PERSONAL INFO -->
+      <div class="section">
+        <h3>Personal Information</h3>
+
+        <div class="input-group">
+          <input type="text" required>
+          <label>Full Name</label>
+        </div>
+
+        <div class="input-group">
+          <input type="email" required>
+          <label>Email Address</label>
+        </div>
+
+        <div class="input-group">
+          <input type="tel" required>
+          <label>Phone Number</label>
+        </div>
+
+        <div class="input-group">
+          <input type="text" required>
+          <label>City / Location</label>
+        </div>
+        <label for="" class="aadhar">upload your aadhar</label>
+        <div class="input-group">
+          <input type="file" name="" id="">
+        </div>
+
+      </div>
+  
+
+
+      <!-- PET DETAILS -->
+      <div class="section">
+        <h3>Pet Details</h3>
+
+        <div class="input-group">
+          <input type="text" required>
+          <label>Pet Name / ID</label>
+        </div>
+
+        <div class="input-group">
+          <select required>
+            <option value="" hidden></option>
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Other</option>
+          </select>
+          <label>Type of Animal</label>
+        </div>
+      </div>
+
+      <!-- LIVING INFO -->
+      <div class="section">
+        <h3>Living Situation</h3>
+
+        <div class="input-group">
+          <select required>
+            <option value="" hidden></option>
+            <option>Apartment</option>
+            <option>Independent House</option>
+            <option>Farm / Open Space</option>
+          </select>
+          <label>Home Type</label>
+        </div>
+
+        <div class="input-group">
+          <select required>
+            <option value="" hidden></option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+          <label>Do you have pets already?</label>
+        </div>
+
+        <div class="input-group textarea">
+          <textarea required></textarea>
+          <label>Why do you want to adopt this pet?</label>
+        </div>
+      </div>
+
+      <!-- AGREEMENT -->
+      <div class="agreement">
+        <input type="checkbox" required>
+        <span>
+          I agree to provide proper care, medical support, and a safe environment for the adopted animal.
+        </span>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="submit-btn">
+        Submit Application
+      </button>
+
+    </form>
+
+  </div>
+</main>
+  <!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="./nav-bar.js"></script>
+
+</body>
+</html>

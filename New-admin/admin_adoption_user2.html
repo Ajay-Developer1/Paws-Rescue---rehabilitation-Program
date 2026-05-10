@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Application Details</title>
+
+<link rel="stylesheet" href="./Header and nav.css">
+
+<style>
+
+/* ===== RESET ===== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+/* ===== BODY ===== */
+
+body{
+  background:linear-gradient(135deg,#1e4fa1,#4b7bec);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1200;
+}
+
+/* ===== MAIN ===== */
+
+.main{
+  padding:20px;
+  margin-left:260px;
+  width:calc(100% - 260px);
+  transition:0.3s ease;
+}
+
+.main.full{
+  margin-left:0;
+  width:100%;
+}
+
+/* ===== BACK BUTTON ===== */
+
+.section-top{
+  position:sticky;
+  top:92px;
+  z-index:1100;
+  margin-bottom:20px;
+}
+
+.back-btn{
+  background:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:12px;
+  font-size:14px;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow:0 5px 15px rgba(0,0,0,0.12);
+  transition:0.3s ease;
+}
+
+.back-btn:hover{
+  background:#1e4fa1;
+  color:white;
+}
+
+/* ===== FORM BOX ===== */
+
+.form-box{
+  background:white;
+  border-radius:22px;
+  padding:30px;
+  max-width:850px;
+  margin:auto;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* ===== TITLE ===== */
+
+.form-box h2{
+  margin-bottom:10px;
+  color:#1e4fa1;
+  font-size:30px;
+}
+
+.form-box p{
+  margin-bottom:25px;
+  color:#666;
+  line-height:1.6;
+}
+
+/* ===== SECTION ===== */
+
+.section-title{
+  margin-top:25px;
+  margin-bottom:15px;
+  font-size:20px;
+  font-weight:700;
+  color:#1e4fa1;
+  border-left:5px solid #3498db;
+  padding-left:10px;
+}
+
+/* ===== FIELD ===== */
+
+.field{
+  margin-bottom:18px;
+  padding:15px;
+  border-radius:14px;
+  background:#f8fbff;
+  border:1px solid #e6eef8;
+}
+
+.label{
+  font-size:13px;
+  color:#6c757d;
+  margin-bottom:5px;
+  font-weight:600;
+}
+
+.value{
+  font-size:16px;
+  font-weight:600;
+  color:#111;
+  line-height:1.5;
+}
+
+/* ===== DOWNLOAD ===== */
+
+.download-btn{
+  display:inline-block;
+  margin-top:12px;
+  background:#3498db;
+  color:white;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.download-btn:hover{
+  background:#1e4fa1;
+}
+
+/* ===== AGREEMENT ===== */
+
+.checkbox{
+  margin-top:20px;
+  padding:15px;
+  background:#eafaf1;
+  border:1px solid #c8f1d8;
+  border-radius:12px;
+  color:#27ae60;
+  font-weight:600;
+  line-height:1.6;
+}
+
+/* ===== ACCEPTED BOX ===== */
+
+.meeting-box{
+  margin-top:25px;
+  padding:20px;
+  border-radius:16px;
+  background:#f8fbff;
+  border:1px solid #dfe9f7;
+}
+
+.meeting-box h3{
+  color:#27ae60;
+  margin-bottom:20px;
+  font-size:22px;
+}
+
+/* ===== HEADER ITEMS ===== */
+
+.notification{
+  font-size:22px;
+  cursor:pointer;
+}
+
+#clock{
+  color:#333;
+  font-weight:bold;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+  transition:0.4s ease;
+}
+
+.sidebar.closed{
+  transform:translateX(-100%);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .form-box{
+    padding:20px;
+    border-radius:18px;
+  }
+
+  .form-box h2{
+    font-size:24px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+
+<div class="sidebar" id="sidebar">
+
+  <h2 class="logo">
+
+    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg">
+
+    PAWS
+
+  </h2>
+
+  <a href="admin_dashboard.html">Dashboard</a>
+
+  <a href="admin_rescue.html">Rescue Cases</a>
+
+  <a href="admin_add_ngo.html">NGOs</a>
+
+  <a href="medical_care.html">Medical Care</a>
+
+  <a href="./admin_adoption.html" class="active">
+    Adoption
+  </a>
+
+  <a href="admin_shelter.html">Shelters</a>
+
+  <a href="./admin_Manage_users.html">
+    Manage Users
+  </a>
+
+  <div class="sidebar-bottom">
+
+    <button class="logout-btn">
+      🚪 Logout
+    </button>
+
+  </div>
+
+</div>
+
+<!-- ===== MAIN ===== -->
+
+<div class="main">
+
+<!-- ===== HEADER ===== -->
+
+<div class="header">
+
+  <div class="header-left">
+
+    <span class="menu" id="menu">☰</span>
+
+    <div class="logo-image">
+
+      <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg">
+
+      PAWS RESCUE
+
+    </div>
+
+  </div>
+
+  <div class="header-right">
+
+    <div id="clock"></div>
+
+    <div class="notification">🔔</div>
+
+    <img
+    src="https://i.postimg.cc/13R6TS5d/4th-hokage-PNG.webp"
+    class="profile-img">
+
+  </div>
+
+</div>
+
+<!-- ===== BACK BUTTON ===== -->
+
+<div class="section-top">
+<a href="admin_adoption.html">
+  <button class="back-btn" id="backBtn">
+
+    ← Back
+
+  </button>
+</a>
+</div>
+
+<!-- ===== FORM BOX ===== -->
+
+<div class="form-box">
+
+  <h2>
+    🐾 Pet Adoption Application
+  </h2>
+
+  <p>
+    Help us find a loving and responsible
+    home for rescued animals.
+  </p>
+
+  <!-- ===== PERSONAL INFO ===== -->
+
+  <div class="section-title">
+    Personal Information
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Full Name
+    </div>
+
+    <div class="value">
+      John Doe
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Email Address
+    </div>
+
+    <div class="value">
+      john@example.com
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Phone Number
+    </div>
+
+    <div class="value">
+      9876543210
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      City / Location
+    </div>
+
+    <div class="value">
+      Hyderabad
+    </div>
+
+  </div>
+
+  <!-- ===== AADHAR ===== -->
+
+  <div class="field">
+
+    <div class="label">
+      Aadhar Verification
+    </div>
+
+    <div class="value">
+      Uploaded Successfully
+    </div>
+
+    <a
+    href="uploads/john_aadhar.pdf"
+    download
+    class="download-btn">
+
+      ⬇ Download Aadhar
+
+    </a>
+
+  </div>
+
+  <!-- ===== PET DETAILS ===== -->
+
+  <div class="section-title">
+    Pet Details
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Pet Name / ID
+    </div>
+
+    <div class="value">
+      Dog-102
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Type of Animal
+    </div>
+
+    <div class="value">
+      Dog
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Living Situation
+    </div>
+
+    <div class="value">
+      With Family
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Home Type
+    </div>
+
+    <div class="value">
+      Apartment
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Do you have pets already?
+    </div>
+
+    <div class="value">
+      Yes
+    </div>
+
+  </div>
+
+  <div class="field">
+
+    <div class="label">
+      Why do you want to adopt this pet?
+    </div>
+
+    <div class="value">
+      I love animals and want to give a safe home.
+    </div>
+
+  </div>
+
+  <!-- ===== AGREEMENT ===== -->
+
+  <div class="checkbox">
+
+    ✔ User agreed to provide proper care,
+    medical support, and a safe environment.
+
+  </div>
+
+  <!-- ===== ACCEPTED STATUS ===== -->
+
+  <div class="meeting-box">
+
+    <h3>
+      ✅ Application Accepted
+    </h3>
+
+    <div class="field">
+
+      <div class="label">
+        Meeting Date
+      </div>
+
+      <div class="value">
+        15 May 2026
+      </div>
+
+    </div>
+
+    <div class="field">
+
+      <div class="label">
+        Meeting Time
+      </div>
+
+      <div class="value">
+        4:30 PM
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- ===== SCRIPT ===== -->
+
+<script>
+
+/* ===== SIDEBAR ===== */
+
+const menu =
+document.getElementById("menu");
+
+const sidebar =
+document.getElementById("sidebar");
+
+const main =
+document.querySelector(".main");
+
+menu.onclick = (e)=>{
+
+  e.stopPropagation();
+
+  sidebar.classList.toggle("closed");
+
+  main.classList.toggle("full");
+
+};
+
+document.addEventListener("click",(e)=>{
+
+  if(
+    !sidebar.contains(e.target) &&
+    !menu.contains(e.target)
+  ){
+
+    sidebar.classList.add("closed");
+
+    main.classList.add("full");
+
+  }
+
+});
+
+sidebar.onclick = (e)=>{
+
+  e.stopPropagation();
+
+};
+
+/* ===== BACK BUTTON ===== */
+
+document.getElementById("backBtn")
+.onclick = ()=>{
+
+  window.history.back();
+
+};
+
+/* ===== CLOCK ===== */
+
+function updateClock(){
+
+  const now = new Date();
+
+  document.getElementById("clock")
+  .innerHTML =
+  now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+
+</body>
+</html>

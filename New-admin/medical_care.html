@@ -1,0 +1,909 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Care</title>
+  <link rel="stylesheet" href="./Header and nav.css">
+  <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#1e4fa1,#4b7bec);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== MAIN ===== */
+
+.main{
+  padding:20px;
+  margin-left:260px;
+  width:calc(100% - 260px);
+  transition:0.3s ease;
+}
+
+.main.full{
+  margin-left:0;
+  width:100%;
+}
+
+/* ===== TOP ===== */
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.top h1{
+  color:white;
+  font-size:32px;
+  font-weight:700;
+}
+
+/* ===== SEARCH ===== */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+#searchInput{
+  padding:12px 15px;
+  border:none;
+  border-radius:12px;
+  outline:none;
+  width:260px;
+  font-size:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== CARDS ===== */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.card{
+  padding:20px;
+  border-radius:18px;
+  color:white;
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  transition:0.3s ease;
+  animation:fadeUp 0.5s ease;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h2{
+  margin-top:12px;
+  font-size:30px;
+}
+
+.red{
+  background:#e74c3c;
+}
+
+.yellow{
+  background:#f1c40f;
+  color:black;
+}
+
+.green{
+  background:#2ecc71;
+}
+
+.blue{
+  background:#3498db;
+}
+
+/* ===== TABLE ===== */
+
+.table{
+  background:white;
+  border-radius:18px;
+  overflow:auto;
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+  animation:fadeUp 0.6s ease;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#f5f7fb;
+  color:#1e4fa1;
+  font-weight:700;
+}
+
+th,td{
+  padding:16px;
+  text-align:center;
+  border-bottom:1px solid #edf1f7;
+}
+
+td:first-child,
+th:first-child{
+  text-align:left;
+}
+
+tr{
+  transition:0.3s ease;
+}
+
+tr:hover{
+  background:#f9fbff;
+}
+
+/* ===== STATUS ===== */
+
+.status{
+  padding:7px 14px;
+  border-radius:30px;
+  color:white;
+  font-size:12px;
+  font-weight:600;
+}
+
+.diagnosis{
+  background:#e74c3c;
+}
+
+.treatment{
+  background:#f1c40f;
+  color:black;
+}
+
+.recovered{
+  background:#2ecc71;
+}
+
+/* ===== BUTTON ===== */
+
+.view-btn{
+  background:#3498db;
+  color:white;
+  border:none;
+  padding:9px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.view-btn:hover{
+  transform:scale(1.05);
+  background:#2980b9;
+}
+
+/* ===== HEADER ===== */
+
+.notification{
+  font-size:22px;
+  cursor:pointer;
+}
+
+#clock{
+  font-weight:bold;
+  color:#333;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+  transition:0.4s ease;
+}
+
+.sidebar.closed{
+  transform:translateX(-100%);
+}
+
+/* ===== MODAL ===== */
+
+.medical-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(8px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:5000;
+  padding:20px;
+}
+
+.modal-box{
+  width:100%;
+  max-width:650px;
+  background:white;
+  border-radius:24px;
+  overflow:hidden;
+  animation:popup 0.35s ease;
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+}
+
+.modal-top{
+  position:relative;
+  height:220px;
+}
+
+.modal-top img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.overlay-dark{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.2)
+  );
+}
+
+.modal-title{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  color:white;
+  z-index:2;
+}
+
+.modal-title h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.close-modal{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:white;
+  font-size:18px;
+  cursor:pointer;
+  z-index:5;
+  transition:0.3s ease;
+}
+
+.close-modal:hover{
+  transform:rotate(90deg);
+}
+
+.modal-body{
+  padding:22px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+}
+
+.info-card{
+  background:#f8fbff;
+  border:1px solid #e8eef6;
+  border-radius:16px;
+  padding:15px;
+}
+
+.info-card span{
+  display:block;
+  font-size:13px;
+  color:#6c757d;
+  margin-bottom:7px;
+}
+
+.info-card h4{
+  color:#1e4fa1;
+  line-height:1.5;
+}
+
+/* ===== ANIMATION ===== */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@keyframes popup{
+
+  from{
+    opacity:0;
+    transform:scale(0.9);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .top{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  #searchInput{
+    width:100%;
+  }
+
+  .modal-box{
+    border-radius:18px;
+  }
+
+  .modal-top{
+    height:180px;
+  }
+
+  .modal-title h2{
+    font-size:24px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+  </style>
+  </head>
+
+  <body>
+
+  <!-- ✅ SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <h2 class="logo">
+    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+    PAWS
+  </h2>
+    <a href="admin_dashboard.html"> Dashboard</a>
+    <a href="admin_rescue.html">Rescue Cases</a>
+    <a href="admin_add_ngo.html">NGOs</a>
+    <a href="medical_care.html" class="active">Medical Care</a>
+    <a href="./admin_adoption.html">Adoption</a>
+    <a href="./admin_shelter.html">Shelters</a>
+    <a href="./admin_Manage_users.html">Manage Users</a>
+    <div class="sidebar-bottom">
+
+      <button class="logout-btn" id="logoutBtn">
+          🚪 Logout
+      </button>
+
+  </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main">
+
+  <!-- ✅ HEADER WITH HAMBURGER -->
+  <div class="header">
+    <div class="header-left">
+      <span class="menu" id="menu">☰</span>
+
+      <div class="logo-image">
+        <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+        PAWS RESCUE
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div id="clock"></div>
+    <div class="notification">🔔</div>
+      <img src="https://i.postimg.cc/13R6TS5d/4th-hokage-PNG.webp" class="profile-img">
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="top">
+    <h1>Medical Care</h1>
+    <div class="search-box">
+
+     <input
+    type="text"
+    id="searchInput"
+    placeholder="Search cases...">
+    </div>
+
+  </div>
+
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card red">Under Diagnosis<br><h2>8</h2></div>
+    <div class="card yellow">In Treatment<br><h2>14</h2></div>
+    <div class="card green">Recovered<br><h2>7</h2></div>
+    <div class="card blue">Total Cases<br><h2>29</h2></div>
+  </div>
+
+  <!-- Table -->
+  <div class="table">
+  <table>
+  <tr>
+  <th>ID</th>
+  <th>Animal</th>
+  <th>Condition</th>
+  <th>NGO</th>
+  <th>Status</th>
+  <th>Last Update</th>
+  <th>Action</th>
+  </tr>
+
+  <tr id="case-101">
+  <td>101</td>
+  <td>Injured Dog</td>
+  <td>Leg fracture</td>
+  <td>Hope Shelter</td>
+  <td><span class="status diagnosis">Diagnosis</span></td>
+  <td>10 min ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+
+  <tr id="case-102">
+  <td>102</td>
+  <td>Cat with Infection</td>
+  <td>Skin infection</td>
+  <td>Paws Haven</td>
+  <td><span class="status treatment">Treatment</span></td>
+  <td>25 min ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+
+  <tr id="case-103">
+  <td>103</td>
+  <td>Stray Bird</td>
+  <td>Broken wing</td>
+  <td>Wildlife Care</td>
+  <td><span class="status treatment">Treatment</span></td>
+  <td>1 hr ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+
+  <tr id="case-104">
+  <td>104</td>
+  <td>Puppy</td>
+  <td>Vaccination</td>
+  <td>Animal Rescue</td>
+  <td><span class="status recovered">Recovered</span></td>
+  <td>2 hrs ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+
+  <tr id="case-105">
+  <td>105</td>
+  <td>Rabbit</td>
+  <td>Digestive issue</td>
+  <td>Pet Care Center</td>
+  <td><span class="status diagnosis">Diagnosis</span></td>
+  <td>3 hrs ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+
+  <tr id="case-106">
+  <td>106</td>
+  <td>Horse</td>
+  <td>Lameness</td>
+  <td>Equine Shelter</td>
+  <td><span class="status treatment">Treatment</span></td>
+  <td>4 hrs ago</td>
+  <td>
+  <button class="view-btn">View</button>
+  </td>
+  </tr>
+  </table>
+  </div>
+
+  </div>
+
+  <!-- ===== MEDICAL VIEW MODAL ===== -->
+
+<div class="medical-modal" id="medicalModal">
+
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <img
+      id="animalImage"
+      src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b">
+
+      <div class="overlay-dark"></div>
+
+      <div class="modal-title">
+
+        <h2 id="animalName">
+          Injured Dog
+        </h2>
+
+        <span class="status diagnosis" id="animalStatus">
+          Diagnosis
+        </span>
+
+      </div>
+
+      <button class="close-modal" id="closeMedicalModal">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="info-grid">
+
+        <div class="info-card">
+
+          <span>🐾 Animal</span>
+
+          <h4 id="detailAnimal">
+            Injured Dog
+          </h4>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>🩺 Condition</span>
+
+          <h4 id="detailCondition">
+            Leg fracture
+          </h4>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>🏥 NGO</span>
+
+          <h4 id="detailNGO">
+            Hope Shelter
+          </h4>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>📌 Status</span>
+
+          <h4 id="detailStatus">
+            Diagnosis
+          </h4>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>🕒 Last Update</span>
+
+          <h4 id="detailUpdate">
+            10 min ago
+          </h4>
+
+        </div>
+
+        <div class="info-card">
+
+          <span>📍 Location</span>
+
+          <h4 id="detailLocation">
+            Hyderabad
+          </h4>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- ✅ SIDEBAR SCRIPT -->
+  <script>
+  // ===== SIDEBAR =====
+  const menu = document.getElementById("menu");
+  const sidebar = document.getElementById("sidebar");
+  const main = document.querySelector(".main");
+
+  // Toggle sidebar
+  menu.onclick = (e) => {
+    e.stopPropagation();
+
+    sidebar.classList.toggle("closed");
+    main.classList.toggle("full");
+  };
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    const insideSidebar = sidebar.contains(e.target);
+    const isMenu = menu.contains(e.target);
+
+    if (!insideSidebar && !isMenu) {
+      sidebar.classList.add("closed");
+      main.classList.add("full");
+    }
+  });
+
+  // Prevent close when clicking sidebar
+  sidebar.onclick = (e) => {
+    e.stopPropagation();
+  };
+
+
+
+  // ===== MEDICAL BUTTONS =====
+  /* ===== MEDICAL MODAL ===== */
+
+const medicalModal =
+document.getElementById("medicalModal");
+
+const closeMedicalModal =
+document.getElementById("closeMedicalModal");
+
+/* ===== ANIMAL IMAGES ===== */
+
+const animalImages = {
+
+  "Injured Dog":
+  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b",
+
+  "Cat with Infection":
+  "https://images.unsplash.com/photo-1519052537078-e6302a4968d4",
+
+  "Stray Bird":
+  "https://images.unsplash.com/photo-1444464666168-49d633b86797",
+
+  "Puppy":
+  "https://images.unsplash.com/photo-1517849845537-4d257902454a",
+
+  "Rabbit":
+  "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308",
+
+  "Horse":
+  "https://images.unsplash.com/photo-1504595403659-9088ce801e29"
+
+};
+
+/* ===== LOCATION DATA ===== */
+
+const locationData = {
+
+  "Hope Shelter":"Hyderabad",
+
+  "Paws Haven":"Chennai",
+
+  "Wildlife Care":"Delhi",
+
+  "Animal Rescue":"Mumbai",
+
+  "Pet Care Center":"Pune",
+
+  "Equine Shelter":"Bangalore"
+
+};
+
+/* ===== BUTTONS ===== */
+
+function setupMedicalButtons(){
+
+  const viewButtons =
+  document.querySelectorAll(".view-btn");
+
+  viewButtons.forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+      const row =
+      btn.closest("tr");
+
+      const animal =
+row.cells[1].textContent;
+
+const condition =
+row.cells[2].textContent;
+
+const ngo =
+row.cells[3].textContent;
+
+const status =
+row.cells[4].textContent.trim();
+
+const update =
+row.cells[5].textContent;
+
+      /* ===== SET DATA ===== */
+
+      document.getElementById("animalImage").src =
+      animalImages[animal];
+
+      document.getElementById("animalName").innerText =
+      animal;
+
+      document.getElementById("detailAnimal").innerText =
+      animal;
+
+      document.getElementById("detailCondition").innerText =
+      condition;
+
+      document.getElementById("detailNGO").innerText =
+      ngo;
+
+      document.getElementById("detailStatus").innerText =
+      status;
+
+      document.getElementById("detailUpdate").innerText =
+      update;
+
+      document.getElementById("detailLocation").innerText =
+      locationData[ngo];
+
+      /* ===== STATUS COLOR ===== */
+
+      const statusBadge =
+      document.getElementById("animalStatus");
+
+      statusBadge.innerText = status;
+
+      statusBadge.className =
+      "status";
+
+      if(status === "Diagnosis"){
+
+        statusBadge.classList.add(
+          "diagnosis"
+        );
+
+      }
+
+      else if(status === "Treatment"){
+
+        statusBadge.classList.add(
+          "treatment"
+        );
+
+      }
+
+      else{
+
+        statusBadge.classList.add(
+          "recovered"
+        );
+
+      }
+
+      /* ===== OPEN MODAL ===== */
+
+      medicalModal.style.display =
+      "flex";
+
+    };
+
+  });
+
+}
+
+/* ===== CLOSE MODAL ===== */
+
+closeMedicalModal.onclick = ()=>{
+
+  medicalModal.style.display =
+  "none";
+
+};
+
+medicalModal.onclick = (e)=>{
+
+  if(e.target === medicalModal){
+
+    medicalModal.style.display =
+    "none";
+
+  }
+
+};
+
+  // INIT
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMedicalButtons();
+  });
+
+  /* ===== SEARCH ===== */
+
+const searchInput =
+document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup",()=>{
+
+  const value =
+  searchInput.value.toLowerCase();
+
+  document.querySelectorAll("table tr")
+  .forEach((row,index)=>{
+
+    if(index === 0) return;
+
+    const text =
+    row.textContent.toLowerCase();
+
+    row.style.display =
+    text.includes(value)
+    ? ""
+    : "none";
+
+  });
+
+});
+
+
+  function updateClock(){
+    const now = new Date();
+
+    document.getElementById("clock").innerHTML =
+    now.toLocaleTimeString();
+  }
+
+  setInterval(updateClock,1000);
+  updateClock();
+
+  </script>
+
+  </body>
+  </html>

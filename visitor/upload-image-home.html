@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paws Rescue & Rehabilitation Program/Upload-Injured-Animal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./upload-image-home.css">
+  <link rel="stylesheet" href="./navbar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+</head>
+<body>
+    <!-- ===== HEADER / NAVBAR ===== -->
+<header>
+  <!-- Hamburger (left) -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Logo + Title -->
+  <div class="brand">
+    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+    <h1>Paws Rescue & Rehabilitation Program</h1>
+  </div>
+
+  <!-- Desktop Menu -->
+  <nav class="nav-links">
+    <a href="./homepage.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-home.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-home.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="../login.html">Login / Signup</a>
+  </nav>
+<!-- Mobile Slide Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-header">
+    <div class="brand">
+      <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
+      <h1>Paws Rescue & Rehabilitation Program</h1>
+    </div>
+    <div class="close-btn" id="closeBtn">&times;</div>
+  </div>
+
+  <div class="mobile-links">
+    <a href="./homepage.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="./aboutus-home.html"><i class="fa-solid fa-circle-info"></i>About Us</a>
+    <a href="./contact-home.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="../login.html">Login / Signup</a>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+</header>
+<main>
+<section class="upload-section">
+
+  <!-- Page Heading -->
+  <div class="upload-header">
+    <h1>Upload Injured Animal</h1>
+    <p>
+      Help us rescue injured animals by uploading an image and sharing basic details.
+      Your small action can save a life.
+    </p>
+  </div>
+
+  <!-- Upload Card -->
+<div class="upload-card" id="uploadCard">
+
+  <!-- Image Preview -->
+  <div class="upload-image-box">
+    <img id="previewImage" src="https://i.postimg.cc/PxDcM8By/Chat-GPT-Image-Mar-15-2026-12-35-08-PM.png" alt="Upload Preview">
+  </div>
+
+  <!-- Form -->
+  <form class="upload-form" id="reportForm">
+
+    <label>Animal Image</label>
+    <input type="file" id="imageInput" accept="image/*" required>
+
+    <label>Location</label>
+    <input type="text" placeholder="Enter location (area, city)" required>
+
+    <label>Description</label>
+    <textarea placeholder="Briefly describe the animal's condition..." required></textarea>
+
+    <button type="submit">Submit Report</button>
+
+  </form>
+
+</div>
+</section>
+</main>
+<footer>
+  <div class="footer-container">  
+    <div class="footer-info">
+      <p>© 2026 My Project. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById("reportForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const card = document.getElementById("uploadCard");
+
+    card.innerHTML = `
+        <div style="text-align:center; padding:50px;">
+            <h2 style="color:#000000;">Report Submitted Successfully!</h2>
+            <p style="margin-top:10px; color:#000000;">
+                Thank you for helping animals in need 🐾
+            </p>
+        </div>
+    `;
+});
+</script>
+<script src="./nav-bar.js"></script>
+</body>
+</html>
