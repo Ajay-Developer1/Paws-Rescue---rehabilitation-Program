@@ -6,7 +6,7 @@
 
 <title>PAWS - Manage Users</title>
 
-<link rel="stylesheet" href="./Header and nav.css">
+<link rel="stylesheet" href="./nav and header.css">
 
 <style>
 
@@ -577,14 +577,13 @@ footer p{
         PAWS
     </h2>
 
-    <a href="admin_dashboard.html">Dashboard</a>
-    <a href="admin_rescue.html">Rescue Cases</a>
-    <a href="admin_add_ngo.html">NGOs</a>
-    <a href="medical_care.html">Medical Care</a>
-    <a href="admin_adoption.html">Adoption</a>
-    <a href="admin_shelter.html">Shelters</a>
-    <a href="#" class="active">Manage Users</a>
-    <div class="sidebar-bottom">
+    <a href="./NGO_Dashboard.html">Dashboard</a>
+<a href="./NGO_Rescue.html">Rescue Cases</a>
+<a href="./NGO_medical_care.html">Medical care</a>
+<a href="./NGO_adoption.html">Adoption</a>
+  <a href="./NGO_Shelters.html">Shlters</a>
+<a href="#" class="active">Manage Rescue Members</a>
+<div class="sidebar-bottom">
 
     <a href="./login.html">
       <button class="logout-btn" id="logoutBtn">
@@ -619,7 +618,7 @@ footer p{
             <div id="clock"></div>
         <!-- <div class="notification">🔔</div> -->
 
-            <img src="https://i.postimg.cc/13R6TS5d/4th-hokage-PNG.webp"
+            <img src="https://img.magnific.com/free-vector/young-man-with-glasses-avatar_1308-175763.jpg?semt=ais_hybrid&w=740&q=80"
             class="profile-img">
 
         </div>
@@ -634,10 +633,10 @@ footer p{
 
         <div class="top-bar">
 
-            <h1>👤 Manage Users</h1>
+            <h1>👤 Manage Rescue Members</h1>
 
             <button class="add-user-btn">
-                + Add New User
+                + Add New Rescue Member
             </button>
 
         </div>
@@ -647,7 +646,7 @@ footer p{
         <div class="search-box">
 
             <input type="text"
-            placeholder="Search users by name, email or phone...">
+            placeholder="Search rescue members by name, email or phone...">
 
         </div>
 
@@ -660,7 +659,7 @@ footer p{
                 <thead>
 
                     <tr>
-                        <th>User ID</th>
+                        <th>Rescue Member ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -811,7 +810,7 @@ document.querySelectorAll(".view").forEach((btn)=>{
         const status = row.children[4].innerText;
 
         alert(
-`USER DETAILS
+` RESCUE MEMBER DETAILS
 
 ID : ${userId}
 
@@ -853,7 +852,7 @@ document.querySelectorAll(".edit").forEach((btn)=>{
 
             <div class="edit-box">
 
-                <h2>Edit User</h2>
+                <h2>Edit Rescue Member</h2>
 
                 <input type="text" id="editName"
                 value="${currentName}">
@@ -919,8 +918,9 @@ document.querySelectorAll(".edit").forEach((btn)=>{
 
         });
 
-    });
+    }); q
 
+    s
 });
 
 
