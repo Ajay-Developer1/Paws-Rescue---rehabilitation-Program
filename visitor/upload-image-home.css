@@ -158,3 +158,32 @@ main {
     max-width: 200px;
   }
 }
+
+.location-wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.location-wrapper button{
+    width:fit-content;
+    padding:12px 18px;
+    border:none;
+    border-radius:8px;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.location-wrapper button:hover{
+    background:#333;
+}
+
+.location-wrapper input{
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
