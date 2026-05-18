@@ -42,40 +42,74 @@ footer {
 }
 
 /* ===== MAIN LAYOUT ===== */
-.adopt-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 60px 20px;
-  flex-wrap: wrap;
+.adopt-main{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:40px;
+  padding:60px 5%;
+  flex-wrap:wrap;
+}
+.adopt-main{
+  margin-top:40px;
+}
+/* BOTH SIDES EQUAL */
+.adopt-info,
+.card{
+  flex:1;
+  min-width:320px;
+  max-width:500px;
 }
 
 /* ===== LEFT INFO ===== */
-.adopt-info {
-  max-width: 420px;
+.adopt-info{
+  background:#9fcbef;
+  padding:35px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.adopt-info h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: #000;
+.adopt-info h1{
+  font-size:2.3rem;
+  margin-bottom:15px;
+  color:#000;
 }
 
-.adopt-info p {
-  margin-bottom: 15px;
-  color: #333;
-  line-height: 1.5;
+.adopt-info p{
+  font-size:1rem;
+  line-height:1.7;
+  margin-bottom:20px;
+  color:#222;
 }
 
-.adopt-info ul {
-  list-style: none;
-  padding: 0;
+.adopt-info ul{
+  list-style:none;
+  margin-top:10px;
 }
 
-.adopt-info li {
-  margin: 8px 0;
-  font-size: 0.95rem;
+.adopt-info li{
+  margin:14px 0;
+  font-size:1rem;
+  color:#111;
+}
+
+/* EXTRA CONTENT BOX */
+.info-box{
+  margin-top:25px;
+  padding:20px;
+  background:#dbe9f8;
+  border-radius:12px;
+}
+
+.info-box h3{
+  margin-bottom:10px;
+}
+
+.info-box p{
+  margin-bottom:0;
 }
 
 /* ===== CARD ===== */
@@ -257,6 +291,13 @@ button:hover {
     </p>
 
     <ul>
+       <div class="info-box">
+  <h3>Why Adoption Matters ❤️</h3>
+  <p>
+    Upload pets for adoption and help them find a loving forever home.
+    Every animal deserves care, safety, and a family to love them.
+  </p>
+</div>
       <li>🏡 Find a safe home for your pet</li>
       <li>❤️ Connect with animal lovers</li>
       <li>🐶 Give your pet a better future</li>
