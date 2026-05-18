@@ -110,7 +110,7 @@ main{
   color: #000000;
   font-size: 0.9em;
   pointer-events: none;
-  transition: 0.3s ease;w
+  transition: 0.3s ease;
 }
 
 .input-group textarea + label {
