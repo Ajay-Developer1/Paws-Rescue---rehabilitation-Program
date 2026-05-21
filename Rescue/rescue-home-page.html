@@ -1,570 +1,1122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Rescue Team Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./nav-bar.css">
-<link rel="stylesheet" href="./footer.css">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-<style>
-/* ================= RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-/* ================= BODY ================= */
-body {
-  background: #ffffff;
-  color: #e5e7eb;
-  padding-top: 60px;
-}
-
-/* ================= NAVBAR ================= */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: #0f172a;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 0 20px;
-  z-index: 1000;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-}
-
-.brand h1 {
-  font-size: 16px;
-}
-
-.nav-links {
-  margin-left: auto;
-}
-
-.nav-links img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: #fff;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  left: -280px;
-  width: 280px;
-  height: 100vh;
-  background: #020617;
-  padding: 20px;
-  transition: 0.3s;
-  z-index: 1100;
-}
-.mobile-menu.open {
-  left: 0;
-}
-
-/* ===== MOBILE HEADER ===== */
-.mobile-header {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-bottom: 25px;
-  position: relative;
-}
-
-/* Project logo + name (TOP) */
-.mobile-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.mobile-brand img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.mobile-brand h2 {
-  font-size: 15px;
-  color: #ffffff;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-/* Profile row (BELOW) */
-.mobile-profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.mobile-profile img {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-}
-
-.mobile-username {
-  font-size: 14px;
-  color: #cbd5e1;
-  white-space: nowrap;
-}
-
-/* Close button (TOP RIGHT) */
-.close-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 22px;
-  cursor: pointer;
-  color: #ffffff;
-}
-
-
-.close-btn {
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-  z-index: 1050;
-}
-.overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-}
-
-/* ================= MAIN ================= */
-.page-title {
-  text-align: center;
-  margin: 30px 0;
-  color: #1e293b;
-}
-
-.task-container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 20px 40px;
-  display: grid;
-  gap: 25px;
-}
-
-/* ================= TASK CARD ================= */
-.task-card {
-  background: #1e293b;
-  padding: 22px;
-  border-radius: 18px;
-  border-left: 6px solid #334155;
-}
-
-.task-card.taken {
-  opacity: 0.6;
-}
-
-.task-card h3 {
-  margin-bottom: 10px;
-}
-
-.task-card p {
-  font-size: 14px;
-  color: #cbd5e1;
-  margin-bottom: 6px;
-}
-
-/* ================= BUTTONS ================= */
-.actions,
-.status-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-button {
-  flex: 1;
-  padding: 11px;
-  border-radius: 25px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.accept { background: #22c55e; color: #0f172a; }
-.reject { background: #ef4444; color: #fff; }
-.leave  { background: #f97316; color: #0f172a; }
-.complete { background: #38bdf8; color: #0f172a; }
-
-.status-text {
-  margin-top: 12px;
-  font-weight: 600;
-  color: #38bdf8;
-}
-
-.hidden { display: none; }
-
-/* ================= MODAL ================= */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  align-items: center;
-  justify-content: center;
-}
-
-.modal.show {
-  display: flex;
-}
-
-.modal-content {
-  background-color: #1e293b;
-  padding: 30px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  color: #e5e7eb;
-}
-
-.modal-content h2 {
-  margin-bottom: 15px;
-  color: #ffffff;
-}
-
-.modal-content textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background: #0f172a;
-  color: #e5e7eb;
-  font-family: Arial, sans-serif;
-  min-height: 100px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.modal-actions button {
-  flex: 1;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.modal-submit {
-  background: #f97316;
-  color: #0f172a;
-}
-
-.modal-cancel {
-  background: #334155;
-  color: #e5e7eb;
-}
-
-/* ================= FOOTER ================= */
-footer {
-  background: #0f172a;
-  color: #94a3b8;
-  padding: 25px;
-  text-align: center;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Rescue Team Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./nav-bar.css">
+  <link rel="stylesheet" href="./footer.css">
+  <link rel="stylesheet" href="./rescue_home_page.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
-
-    <!-- ===== HEADER / NAVBAR ===== -->
-<header>
-  <!-- Hamburger (left) -->
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- Logo + Title -->
-  <div class="brand">
-    <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
-    <h1>Paws Rescue & Rehabilitation Program</h1>
-  </div>
-
-  <!-- Desktop Menu -->
-  <nav class="nav-links">
-    <a href="./rescue-home-page.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
-    <a href="./profile-rescue.html"><img src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-173524.jpg?semt=ais_hybrid&w=740&q=80" alt="" width="10%"></a>
-  </nav>
-<!-- Mobile Slide Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-header">
-    <div class="brand">
-      <img src="https://i.postimg.cc/NjDChGWh/Whats-App-Image-2026-03-23-at-12-33-09.jpg" alt="logo">
-      <h1>Paws Rescue &<br>Rehabilitation Program</h1>
+  <!-- ===== RESCUE DASHBOARD SECTION ===== -->
+  <section class="rescue-dashboard">
+    <!-- TOP HEADER -->
+    <div class="dashboard-top">
+      <div class="dashboard-title">
+        <div class="dashboard-icon">
+          <i class="fa-solid fa-truck-medical"></i>
+        </div>
+        <div>
+          <h1>Rescue Mission Dashboard</h1>
+          <p>
+            View and manage incoming rescue requests.
+            Accept a mission to help save a life.
+          </p>
+        </div>
+      </div>
+      <!-- STATS -->
+      <div class="dashboard-stats">
+        <div class="stat-box">
+          <i class="fa-regular fa-clipboard"></i>
+          <div>
+            <h2>12</h2>
+            <span>Total Requests</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-regular fa-clock"></i>
+          <div>
+            <h2>8</h2>
+            <span>Pending</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-regular fa-circle-check"></i>
+          <div>
+            <h2>3</h2>
+            <span>Accepted</span>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-regular fa-circle-xmark"></i>
+          <div>
+            <h2>1</h2>
+            <span>Rejected</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="close-btn" id="closeBtn">&times;</div>
-  </div>
+    <!-- FILTER BAR -->
+    <div class="dashboard-filter">
+      <div class="filter-left">
+        <button class="filter-btn active">
+          <i class="fa-regular fa-clipboard"></i>
+          Pending
+        </button>
+        <button class="filter-btn">
+          <i class="fa-regular fa-circle-check"></i>
+          Accepted
+        </button>
+        <button class="filter-btn">
+          <i class="fa-solid fa-flag"></i>
+          Completed
+        </button>
+        <button class="filter-btn">
+          <i class="fa-regular fa-circle-xmark"></i>
+          Rejected
+        </button>
+      </div>
+      <div class="filter-right">
 
-  <div class="mobile-links">
-    <a href="./rescue-home-page.html" class="active"><i class="fa-solid fa-house"></i>Home</a>
-    <a href="./profile-rescue.html" style="display: flex;"><img src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-173524.jpg?semt=ais_hybrid&w=740&q=80" alt="" width="10%" >ajay.example@gmail.com</a>
-  </div>
+  <select>
+
+    <option>All Locations</option>
+
+    <option>Hyderabad</option>
+
+    <option>Bangalore</option>
+
+  </select>
+
+  <button class="history-btn">
+
+    <i class="fa-solid fa-clock-rotate-left"></i>
+
+    History
+
+  </button>
+
+</div>
 </div>
 
-<div class="overlay" id="overlay"></div>
-</header>
+    <!-- ===== GOOGLE MAP ===== -->
 
-<!-- ================= MAIN ================= -->
-<main>
+    <div class="google-map-box" id="googleMapBox">
 
-<section class="page-title">
-  <h1>Rescue Team Dashboard</h1>
-  <p>Accept or manage rescue missions</p>
-</section>
+      <div class="map-header">
 
-<section class="task-container">
+        <h2>Live Navigation</h2>
 
-<!-- ===== MISSION TEMPLATE ===== -->
+        <button id="closeMapBtn">
+          Back
+        </button>
 
-<div class="task-card" id="card701">
-  <h3>Mission 701</h3>
-  <p><strong>Animal:</strong> Dog</p>
-  <p><strong>Location:</strong> Chennai, Tamil Nadu</p>
-  <p><strong>Condition:</strong> Injured front leg</p>
-  <p><strong>Urgency:</strong> High</p>
+      </div>
 
-  <div class="actions" id="actions701">
-    <button class="accept" onclick="acceptTask(701)">Accept</button>
-    <button class="reject" onclick="rejectTask(701)">Reject</button>
-  </div>
+      <iframe id="googleMapFrame" width="100%" height="500" style="border:0;" loading="lazy" allowfullscreen>
+      </iframe>
 
-  <div class="status-actions hidden" id="statusActions701">
-    <button class="leave" onclick="openLeaveModal(701)">Leave Rescue</button>
-    <button class="complete" onclick="completeTask(701)">Completed</button>
-  </div>
-
-  <div class="status-text hidden" id="statusText701"></div>
-</div>
-
-<div class="task-card taken">
-  <h3>Mission 702</h3>
-  <p>Status: Taken by another team</p>
-</div>
-
-<div class="task-card" id="card703">
-  <h3>Mission 703</h3>
-  <p><strong>Animal:</strong> Cow</p>
-  <p><strong>Location:</strong> Bangalore, Karnataka</p>
-  <p><strong>Condition:</strong> Malnutrition, needs medical care</p>
-  <p><strong>Urgency:</strong> Medium</p>
-
-  <div class="actions" id="actions703">
-    <button class="accept" onclick="acceptTask(703)">Accept</button>
-    <button class="reject" onclick="rejectTask(703)">Reject</button>
-  </div>
-
-  <div class="status-actions hidden" id="statusActions703">
-    <button class="leave" onclick="openLeaveModal(703)">Leave Rescue</button>
-    <button class="complete" onclick="completeTask(703)">Completed</button>
-  </div>
-
-  <div class="status-text hidden" id="statusText703"></div>
-</div>
-
-<div class="task-card taken">
-  <h3>Mission 704</h3>
-  <p>Status: Taken by another team</p>
-</div>
-
-<div class="task-card" id="card705">
-  <h3>Mission 705</h3>
-  <p><strong>Animal:</strong> Goat</p>
-  <p><strong>Location:</strong> Hyderabad, Telangana</p>
-  <p><strong>Condition:</strong> Minor cuts, needs shelter</p>
-  <p><strong>Urgency:</strong> Low</p>
-
-  <div class="actions" id="actions705">
-    <button class="accept" onclick="acceptTask(705)">Accept</button>
-    <button class="reject" onclick="rejectTask(705)">Reject</button>
-  </div>
-
-  <div class="status-actions hidden" id="statusActions705">
-    <button class="leave" onclick="openLeaveModal(705)">Leave Rescue</button>
-    <button class="complete" onclick="completeTask(705)">Completed</button>
-  </div>
-
-  <div class="status-text hidden" id="statusText705"></div>
-</div>
-
-<div class="task-card" id="card706">
-  <h3>Mission 706</h3>
-  <p><strong>Animal:</strong> Cat</p>
-  <p><strong>Location:</strong> Mumbai, Maharashtra</p>
-  <p><strong>Condition:</strong> Stuck in building, needs rescue</p>
-  <p><strong>Urgency:</strong> High</p>
-
-  <div class="actions" id="actions706">
-    <button class="accept" onclick="acceptTask(706)">Accept</button>
-    <button class="reject" onclick="rejectTask(706)">Reject</button>
-  </div>
-
-  <div class="status-actions hidden" id="statusActions706">
-    <button class="leave" onclick="openLeaveModal(706)">Leave Rescue</button>
-    <button class="complete" onclick="completeTask(706)">Completed</button>
-  </div>
-
-  <div class="status-text hidden" id="statusText706"></div>
-</div>
-
-<div class="task-card taken">
-  <h3>Mission 707</h3>
-  <p>Status: Taken by another team</p>
-</div>
-
-</section>
-</main>
-
-<!-- ================= LEAVE REASON MODAL ================= -->
-<div class="modal" id="leaveModal">
-  <div class="modal-content">
-    <h2>Why are you leaving this rescue?</h2>
-    <textarea id="leaveReason" placeholder="Please provide a reason for leaving..."></textarea>
-    <div class="modal-actions">
-      <button class="modal-submit" onclick="submitLeaveReason()">Submit</button>
-      <button class="modal-cancel" onclick="cancelLeave()">Cancel</button>
     </div>
-  </div>
+
+    <!-- ===== UPLOAD INJURED ANIMAL ===== -->
+
+    <div class="upload-animal-box">
+
+      <div class="upload-header">
+
+        <h2>Upload Injured Animal Photo</h2>
+
+        <p>
+          Capture and upload the current condition of the rescued animal.
+        </p>
+
+      </div>
+
+      <div class="upload-area">
+
+        <input type="file" id="animalUpload" accept="image/*" hidden>
+
+        <label for="animalUpload" class="upload-label">
+
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+
+          <span>Click to Upload Image</span>
+
+        </label>
+
+      </div>
+
+      <!-- IMAGE PREVIEW -->
+
+
+
+      <div class="preview-box" id="previewBox">
+
+        <img id="previewImage" src="" alt="Preview">
+
+        <div class="upload-success" id="uploadSuccess">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+          Image Uploaded Successfully
+
+        </div>
+
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+
+      <button id="submitAnimalBtn">
+
+        <i class="fa-solid fa-paper-plane"></i>
+        Submit Report
+
+      </button>
+
+    </div>
+
+
+    <!-- MISSION CARD 1 -->
+    <div class="mission-card">
+
+      <div class="mission-image">
+
+        <span class="new-badge">NEW</span>
+
+        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
+          alt="dog">
+
+      </div>
+
+
+
+      <div class="mission-content">
+
+        <div class="mission-info">
+
+          <h2>Dog Rescue Mission</h2>
+
+          <p>
+            Injured street dog reported near traffic signal.
+            Animal unable to walk properly.
+          </p>
+
+          <div class="mission-tags">
+
+            <span>❤️ Injured</span>
+            <span>⚠️ Urgent</span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="mission-location">
+
+          <p><i class="fa-solid fa-location-dot"></i> MG Road, Hyderabad</p>
+
+          <p><i class="fa-regular fa-calendar"></i> May 23, 2026</p>
+
+          <p><i class="fa-regular fa-clock"></i> 10:35 AM</p>
+
+          <p><i class="fa-regular fa-user"></i> Reported by: Ramesh Kumar</p>
+
+        </div>
+
+
+
+
+        <div class="mission-actions">
+
+          <button class="accept-btn">
+            <i class="fa-solid fa-check"></i>
+            Accept Mission
+          </button>
+
+          <button class="reject-btn">
+            <i class="fa-solid fa-xmark"></i>
+            Reject Mission
+          </button>
+
+          <a href="#">View Details →</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <!-- MISSION CARD 2 -->
+    <div class="mission-card">
+
+      <div class="mission-image">
+
+        <span class="new-badge">NEW</span>
+
+        <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?q=80&w=1200&auto=format&fit=crop"
+          alt="cat">
+
+      </div>
+
+
+
+      <div class="mission-content">
+
+        <div class="mission-info">
+
+          <h2>Cat Rescue Mission</h2>
+
+          <p>
+            Small kitten stuck inside drainage area.
+            Needs immediate rescue support.
+          </p>
+
+          <div class="mission-tags">
+
+            <span>🐱 Stuck</span>
+            <span>⚠️ Urgent</span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="mission-location">
+
+          <p><i class="fa-solid fa-location-dot"></i> Jubilee Hills, Hyderabad</p>
+
+          <p><i class="fa-regular fa-calendar"></i> May 23, 2026</p>
+
+          <p><i class="fa-regular fa-clock"></i> 09:15 AM</p>
+
+          <p><i class="fa-regular fa-user"></i> Reported by: Anjali Verma</p>
+
+        </div>
+
+
+
+
+        <div class="mission-actions">
+
+          <button class="accept-btn">
+            <i class="fa-solid fa-check"></i>
+            Accept Mission
+          </button>
+
+          <button class="reject-btn">
+            <i class="fa-solid fa-xmark"></i>
+            Reject Mission
+          </button>
+
+          <a href="#">View Details →</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <!-- MISSION CARD 3 -->
+    <div class="mission-card">
+
+      <div class="mission-image">
+
+        <span class="new-badge">NEW</span>
+
+        <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1200&auto=format&fit=crop"
+          alt="pig">
+
+      </div>
+
+
+
+      <div class="mission-content">
+
+        <div class="mission-info">
+
+          <h2>Pig Rescue Mission</h2>
+
+          <p>
+            Injured pig found near roadside with leg wound.
+            Rescue vehicle required.
+          </p>
+
+          <div class="mission-tags">
+
+            <span>❤️ Injured</span>
+            <span>🚑 Vehicle Required</span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="mission-location">
+
+          <p><i class="fa-solid fa-location-dot"></i> Banjara Hills, Hyderabad</p>
+
+          <p><i class="fa-regular fa-calendar"></i> May 23, 2026</p>
+
+          <p><i class="fa-regular fa-clock"></i> 08:40 AM</p>
+
+          <p><i class="fa-regular fa-user"></i> Reported by: Suresh Reddy</p>
+
+        </div>
+
+
+
+
+        <div class="mission-actions">
+
+          <button class="accept-btn">
+            <i class="fa-solid fa-check"></i>
+            Accept Mission
+          </button>
+
+          <button class="reject-btn">
+            <i class="fa-solid fa-xmark"></i>
+            Reject Mission
+          </button>
+
+          <a href="#">View Details →</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- INFO -->
+    <div class="dashboard-note">
+
+      <i class="fa-solid fa-circle-info"></i>
+
+      <p>
+        Accept a mission only if you are available to reach the location quickly.
+      </p>
+
+    </div>
+
+  </section>
+  </main>
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+// ===== FILTER BUTTON ACTIVE =====
+
+const filterButtons =
+document.querySelectorAll(".filter-btn");
+
+filterButtons.forEach(button => {
+
+button.addEventListener("click", () => {
+
+filterButtons.forEach(btn => {
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+filterMissions();
+
+});
+
+});
+
+// ===== GOOGLE MAP VARIABLES =====
+
+const googleMapBox =
+document.getElementById("googleMapBox");
+
+const googleMapFrame =
+document.getElementById("googleMapFrame");
+
+const closeMapBtn =
+document.getElementById("closeMapBtn");
+
+const missionCards =
+document.querySelectorAll(".mission-card");
+
+const dashboardFilter =
+document.querySelector(".dashboard-filter");
+
+const dashboardNote =
+document.querySelector(".dashboard-note");
+
+const uploadBox =
+document.querySelector(".upload-animal-box");
+
+// ===== ACTIVE MISSION =====
+
+let activeMissionCard = null;
+
+let rescueCompleted = false;
+
+// ===== ACCEPT MISSION =====
+
+const acceptButtons =
+document.querySelectorAll(".accept-btn");
+
+acceptButtons.forEach(button => {
+
+button.addEventListener("click", () => {
+
+const missionCard =
+button.closest(".mission-card");
+
+// ===== STORE ACTIVE CARD =====
+
+activeMissionCard = missionCard;
+
+// ===== RESET RESCUE STATUS =====
+
+rescueCompleted = false;
+const rejectBtn =
+missionCard.querySelector(".reject-btn");
+
+// ===== BUTTON UI =====
+
+button.innerHTML = `
+<i class="fa-solid fa-circle-check"></i>
+Accepted
+`;
+
+button.style.background = "#0f8f38";
+
+button.disabled = true;
+
+// ===== DISABLE REJECT =====
+
+rejectBtn.disabled = true;
+
+rejectBtn.style.opacity = "0.5";
+
+rejectBtn.style.cursor = "not-allowed";
+
+// ===== CARD BORDER =====
+
+missionCard.style.border =
+"3px solid #20b24b";
+
+// ===== HIDE DASHBOARD =====
+
+document.querySelectorAll(".mission-card")
+.forEach(card => {
+
+card.style.display = "none";
+
+});
+
+dashboardFilter.style.display = "none";
+
+dashboardNote.style.display = "none";
+
+// ===== SHOW MAP =====
+
+googleMapBox.style.display = "block";
+
+// ===== SHOW UPLOAD BOX =====
+
+uploadBox.style.display = "block";
+
+// ===== DESTINATION =====
+
+const victimLat = 17.3920;
+
+const victimLng = 78.4910;
+
+// ===== GET CURRENT LOCATION =====
+
+navigator.geolocation.getCurrentPosition(
+
+(position) => {
+
+const currentLat =
+position.coords.latitude;
+
+const currentLng =
+position.coords.longitude;
+
+// ===== GOOGLE MAP DIRECTIONS =====
+
+googleMapFrame.src =
+`https://maps.google.com/maps?saddr=${currentLat},${currentLng}&daddr=${victimLat},${victimLng}&output=embed`;
+
+},
+
+(error) => {
+
+alert("Please allow location access.");
+
+}
+
+);
+
+});
+
+});
+
+// ===== REJECT MISSION =====
+
+const rejectButtons =
+document.querySelectorAll(".reject-btn");
+
+rejectButtons.forEach(button => {
+
+button.addEventListener("click", () => {
+
+const missionCard =
+button.closest(".mission-card");
+
+const acceptBtn =
+missionCard.querySelector(".accept-btn");
+
+// ===== ASK REASON =====
+
+const rejectReason = prompt(
+"Please enter the reason for rejecting this mission:"
+);
+
+// ===== IF USER CANCELS =====
+
+if(rejectReason === null){
+
+return;
+
+}
+
+// ===== EMPTY REASON CHECK =====
+
+if(rejectReason.trim() === ""){
+
+alert("Please provide a rejection reason.");
+
+return;
+
+}
+
+// ===== BUTTON UI =====
+
+button.innerHTML = `
+<i class="fa-solid fa-circle-xmark"></i>
+Rejected
+`;
+
+button.style.background = "#c62828";
+
+button.disabled = true;
+
+// ===== DISABLE ACCEPT =====
+
+acceptBtn.disabled = true;
+
+acceptBtn.style.opacity = "0.5";
+
+acceptBtn.style.cursor = "not-allowed";
+
+// ===== CARD BORDER =====
+
+missionCard.style.border =
+"3px solid #ff3b30";
+
+// ===== STORE REASON =====
+
+const reasonText =
+document.createElement("p");
+
+reasonText.style.marginTop = "15px";
+
+reasonText.style.color = "#c62828";
+
+reasonText.style.fontWeight = "600";
+
+reasonText.innerHTML = `
+<i class="fa-solid fa-circle-info"></i>
+Reason: ${rejectReason}
+`;
+
+// ===== ADD REASON BELOW ACTIONS =====
+
+missionCard
+.querySelector(".mission-actions")
+.appendChild(reasonText);
+
+// ===== ALERT =====
+
+alert("Mission Rejected Successfully!");
+
+});
+
+});
+// ===== VIEW DETAILS =====
+
+const detailLinks =
+document.querySelectorAll(".mission-actions a");
+
+detailLinks.forEach(link => {
+
+link.addEventListener("click", (e) => {
+
+e.preventDefault();
+
+const missionCard =
+link.closest(".mission-card");
+
+// ===== GET DETAILS =====
+
+const title =
+missionCard.querySelector(".mission-info h2")
+.innerText;
+
+const description =
+missionCard.querySelector(".mission-info p")
+.innerText;
+
+const image =
+missionCard.querySelector(".mission-image img")
+.src;
+
+const location =
+missionCard.querySelectorAll(".mission-location p")[0]
+.innerText;
+
+const date =
+missionCard.querySelectorAll(".mission-location p")[1]
+.innerText;
+
+const time =
+missionCard.querySelectorAll(".mission-location p")[2]
+.innerText;
+
+const reporter =
+missionCard.querySelectorAll(".mission-location p")[3]
+.innerText;
+
+const tags =
+Array.from(
+missionCard.querySelectorAll(".mission-tags span")
+)
+.map(tag => tag.innerText)
+.join(" | ");
+
+// ===== REMOVE OLD BOX =====
+
+const oldBox =
+document.querySelector(".details-popup");
+
+if(oldBox){
+
+oldBox.remove();
+
+}
+
+// ===== CREATE DETAILS BOX =====
+
+const detailsBox =
+document.createElement("div");
+
+detailsBox.className =
+"details-popup";
+
+detailsBox.innerHTML = `
+
+<div class="details-card">
+
+<button class="close-details">
+<i class="fa-solid fa-xmark"></i>
+</button>
+
+<img src="${image}" alt="animal">
+
+<h2>${title}</h2>
+
+<p class="details-description">
+${description}
+</p>
+
+<div class="details-tags">
+${tags}
 </div>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  © 2026 My Project. All rights reserved.
-</footer>
+<div class="details-info">
 
-<!-- ================= JAVASCRIPT ================= -->
-<script>
-const hamburger = document.getElementById("hamburger");
-const mobileMenu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
-const closeBtn = document.getElementById("closeBtn");
+<p><i class="fa-solid fa-location-dot"></i> ${location}</p>
 
-hamburger.onclick = () => {
-  mobileMenu.classList.add("open");
-  overlay.classList.add("show");
-};
+<p><i class="fa-regular fa-calendar"></i> ${date}</p>
 
-overlay.onclick = closeBtn.onclick = () => {
-  mobileMenu.classList.remove("open");
-  overlay.classList.remove("show");
-};
+<p><i class="fa-regular fa-clock"></i> ${time}</p>
 
-let currentLeaveTaskId = null;
+<p><i class="fa-regular fa-user"></i> ${reporter}</p>
 
-/* ===== RESCUE LOGIC ===== */
-function acceptTask(id) {
-  document.getElementById("actions"+id).classList.add("hidden");
-  document.getElementById("statusActions"+id).classList.remove("hidden");
-  const s = document.getElementById("statusText"+id);
-  s.textContent = "Status: Mission Accepted";
-  s.classList.remove("hidden");
+</div>
+
+</div>
+
+`;
+
+// ===== APPEND =====
+
+document.body.appendChild(detailsBox);
+
+// ===== CLOSE BUTTON =====
+
+detailsBox
+.querySelector(".close-details")
+.addEventListener("click", () => {
+
+detailsBox.remove();
+
+});
+
+});
+
+});
+
+// ===== LOCATION FILTER =====
+
+const locationSelect =
+document.querySelector(".filter-right select");
+
+// ===== MAIN FILTER FUNCTION =====
+
+function filterMissions() {
+
+const activeFilter =
+document.querySelector(".filter-btn.active")
+.textContent
+.trim()
+.toLowerCase();
+
+const selectedLocation =
+locationSelect.value.toLowerCase();
+
+missionCards.forEach(card => {
+
+const acceptBtn =
+card.querySelector(".accept-btn");
+
+const rejectBtn =
+card.querySelector(".reject-btn");
+
+// ===== STATUS CHECK =====
+
+let status = "pending";
+
+if (
+acceptBtn.disabled &&
+acceptBtn.innerText.includes("Accepted")
+) {
+
+status = "accepted";
+
 }
 
-function rejectTask(id) {
-  document.getElementById("actions"+id).classList.add("hidden");
-  const s = document.getElementById("statusText"+id);
-  s.textContent = "Status: Mission Rejected";
-  s.classList.remove("hidden");
+if (
+rejectBtn.disabled &&
+rejectBtn.innerText.includes("Rejected")
+) {
+
+status = "rejected";
+
 }
 
-function openLeaveModal(id) {
-  currentLeaveTaskId = id;
-  document.getElementById("leaveModal").classList.add("show");
-  document.getElementById("leaveReason").value = "";
+// ===== LOCATION TEXT =====
+
+const locationText =
+card.querySelector(".mission-location p")
+.innerText
+.toLowerCase();
+
+// ===== STATUS FILTER =====
+
+let statusMatch = false;
+
+if (activeFilter.includes("pending")) {
+
+statusMatch = status === "pending";
+
 }
 
-function cancelLeave() {
-  document.getElementById("leaveModal").classList.remove("show");
-  currentLeaveTaskId = null;
+else if (activeFilter.includes("accepted")) {
+
+statusMatch = status === "accepted";
+
 }
 
-function submitLeaveReason() {
-  const reason = document.getElementById("leaveReason").value.trim();
-  
-  if (!reason) {
-    alert("Please provide a reason for leaving the rescue.");
-    return;
-  }
-  
-  if (currentLeaveTaskId) {
-    leaveTask(currentLeaveTaskId, reason);
-    document.getElementById("leaveModal").classList.remove("show");
-    currentLeaveTaskId = null;
-  }
+else if (activeFilter.includes("rejected")) {
+
+statusMatch = status === "rejected";
+
 }
 
-function leaveTask(id, reason) {
-  document.getElementById("statusActions"+id).classList.add("hidden");
-  document.getElementById("statusText"+id).textContent =
-    "Status: Rescue Left - Reason: " + reason;
+else if (activeFilter.includes("completed")) {
+
+statusMatch = false;
+
 }
 
-function completeTask(id) {
-  document.getElementById("statusActions"+id).classList.add("hidden");
-  document.getElementById("statusText"+id).textContent =
-    "Status: Mission Completed";
+// ===== LOCATION FILTER =====
+
+let locationMatch = false;
+
+if (selectedLocation === "all locations") {
+
+locationMatch = true;
+
 }
-</script>
+
+else {
+
+locationMatch =
+locationText.includes(selectedLocation);
+
+}
+
+// ===== FINAL SHOW/HIDE =====
+
+if (statusMatch && locationMatch) {
+
+card.style.display = "flex";
+
+}
+
+else {
+
+card.style.display = "none";
+
+}
+
+});
+
+}
+
+// ===== LOCATION FILTER EVENT =====
+
+locationSelect.addEventListener("change", () => {
+
+filterMissions();
+
+});
+
+// ===== INITIAL LOAD =====
+
+filterMissions();
+
+
+// ===== BACK BUTTON =====
+
+closeMapBtn.addEventListener("click", () => {
+
+// ===== CHECK TASK STATUS =====
+
+if(!rescueCompleted){
+
+alert("You should complete this rescue task first.");
+
+return;
+
+}
+
+// ===== HIDE MAP =====
+
+googleMapBox.style.display = "none";
+
+// ===== HIDE UPLOAD BOX =====
+
+uploadBox.style.display = "none";
+
+// ===== RESET ACTIVE MISSION =====
+
+if(activeMissionCard){
+
+const acceptBtn =
+activeMissionCard.querySelector(".accept-btn");
+
+const rejectBtn =
+activeMissionCard.querySelector(".reject-btn");
+
+// ===== RESET ACCEPT BUTTON =====
+
+acceptBtn.innerHTML = `
+<i class="fa-solid fa-check"></i>
+Accept Mission
+`;
+
+acceptBtn.style.background = "#20b24b";
+
+acceptBtn.disabled = false;
+
+// ===== RESET REJECT BUTTON =====
+
+rejectBtn.disabled = false;
+
+rejectBtn.style.opacity = "1";
+
+rejectBtn.style.cursor = "pointer";
+
+// ===== RESET CARD BORDER =====
+
+activeMissionCard.style.border =
+"none";
+
+}
+
+// ===== SHOW DASHBOARD =====
+
+dashboardFilter.style.display = "flex";
+
+dashboardNote.style.display = "flex";
+
+// ===== APPLY FILTERS =====
+
+filterMissions();
+
+});
+
+// ===== UPLOAD VARIABLES =====
+
+const uploadSuccess =
+document.getElementById("uploadSuccess");
+
+const previewImage =
+document.getElementById("previewImage");
+
+const animalUpload =
+document.getElementById("animalUpload");
+
+const previewBox =
+document.getElementById("previewBox");
+
+// ===== IMAGE UPLOAD PREVIEW =====
+
+animalUpload.addEventListener("change", (e) => {
+
+const file = e.target.files[0];
+
+if(file){
+
+const imageURL =
+URL.createObjectURL(file);
+
+previewImage.src = imageURL;
+
+previewBox.style.display = "block";
+
+uploadSuccess.style.display = "flex";
+
+}
+
+});
+
+// ===== SUBMIT BUTTON =====
+
+const submitAnimalBtn =
+document.getElementById("submitAnimalBtn");
+
+submitAnimalBtn.addEventListener("click", () => {
+
+if(previewImage.src === ""){
+
+alert("Please upload an image first.");
+
+return;
+
+}
+
+// ===== HIDE UPLOAD BOX =====
+
+uploadBox.style.display = "none";
+
+rescueCompleted = false;
+
+// ===== CREATE SUCCESS NOTIFICATION =====
+
+const successMessage =
+document.createElement("div");
+
+successMessage.className =
+"ngo-success-message";
+
+successMessage.innerHTML = `
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h2>Rescue Team Reached Successfully</h2>
+
+<p>
+Please submit this rescued animal to an NGO
+for further treatment and proper care.
+</p>
+
+<button id="finishRescueBtn">
+Finish Rescue
+</button>
+
+`;
+
+// ===== APPEND MESSAGE =====
+
+document.querySelector(".rescue-dashboard")
+.appendChild(successMessage);
+
+// ===== FINISH BUTTON =====
+
+document
+.getElementById("finishRescueBtn")
+.addEventListener("click", () => {
+
+rescueCompleted = true;
+
+alert("Rescue Mission Completed!");
+
+// ===== DELETE FINISHED MISSION =====
+
+if(activeMissionCard){
+
+activeMissionCard.remove();
+
+}
+
+// ===== REMOVE SUCCESS MESSAGE =====
+
+successMessage.remove();
+
+// ===== HIDE MAP =====
+
+googleMapBox.style.display = "none";
+
+// ===== SHOW DASHBOARD =====
+
+dashboardFilter.style.display = "flex";
+
+dashboardNote.style.display = "flex";
+
+// ===== REFRESH FILTER =====
+
+filterMissions();
+
+});
+
+});
+  </script>
+
 
 </body>
+
 </html>
