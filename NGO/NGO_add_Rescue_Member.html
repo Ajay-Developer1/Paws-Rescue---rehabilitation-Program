@@ -918,9 +918,8 @@ document.querySelectorAll(".edit").forEach((btn)=>{
 
         });
 
-    }); q
+    });
 
-    s
 });
 
 
@@ -1277,17 +1276,21 @@ addUserBtn.addEventListener("click",()=>{
         const rows =
         document.querySelectorAll("tbody tr");
 
-        const lastRow =
-        rows[rows.length - 1];  
+        let userId = "#1";
 
-        const lastId =
-        parseInt(
-        lastRow.children[0].innerText.replace("#","")
-        );
+        if(rows.length){
 
-        // Next ID
+            const lastRow =
+            rows[rows.length - 1];
 
-        const userId = "#" + (lastId + 1);
+            const lastId =
+            parseInt(
+            lastRow.children[0].innerText.replace("#","")
+            );
+
+            userId = "#" + (lastId + 1);
+
+        }
 
         // Status class
 
@@ -1409,6 +1412,60 @@ Status : ${status}`
 
     });
 
+    // ===== EDIT =====
+
+    row.querySelector(".edit")
+    .addEventListener("click",()=>{
+
+        const currentName = row.children[1].innerText;
+        const currentEmail = row.children[2].innerText;
+        const currentPhone = row.children[3].innerText;
+
+        const popup = document.createElement("div");
+
+        popup.innerHTML = `
+            <div class="edit-popup">
+                <div class="edit-box">
+                    <h2>Edit Rescue Member</h2>
+                    <input type="text" id="editName" value="${currentName}">
+                    <input type="email" id="editEmail" value="${currentEmail}">
+                    <input type="text" id="editPhone" value="${currentPhone}">
+                    <div class="popup-buttons">
+                        <button class="save-btn">Save</button>
+                        <button class="cancel-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        popup.querySelector(".save-btn")
+        .addEventListener("click",()=>{
+
+            row.children[1].innerText =
+            popup.querySelector("#editName").value;
+
+            row.children[2].innerText =
+            popup.querySelector("#editEmail").value;
+
+            row.children[3].innerText =
+            popup.querySelector("#editPhone").value;
+
+            popup.remove();
+            alert("User Updated Successfully ✅");
+
+        });
+
+        popup.querySelector(".cancel-btn")
+        .addEventListener("click",()=>{
+
+            popup.remove();
+
+        });
+
+    });
+
     // ===== DELETE =====
 
     row.querySelector(".delete")
@@ -1432,6 +1489,93 @@ Status : ${status}`
         }
 
     });
+
+    // ===== BLOCK / UNBLOCK =====
+
+    const blockBtn = row.querySelector(".block, .unblock");
+    const statusSpan = row.querySelector(".status");
+
+    if(blockBtn && statusSpan){
+
+        blockBtn.addEventListener("click",()=>{
+
+            if(blockBtn.innerText === "Block"){
+
+                const popup = document.createElement("div");
+
+                popup.innerHTML = `
+                    <div class="reason-popup">
+                        <div class="reason-box">
+                            <h2>Block User</h2>
+                            <textarea id="blockReason" placeholder="Enter reason for blocking..."></textarea>
+                            <div class="reason-buttons">
+                                <button class="confirm-block">Block User</button>
+                                <button class="cancel-block">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(popup);
+
+                popup.querySelector(".confirm-block")
+                .addEventListener("click",()=>{
+
+                    const reason =
+                    popup.querySelector("#blockReason").value;
+
+                    if(reason.trim() === ""){
+
+                        alert("Please enter a reason.");
+                        return;
+
+                    }
+
+                    statusSpan.innerText = "Blocked";
+                    statusSpan.classList.remove("active");
+                    statusSpan.classList.add("blocked");
+
+                    blockBtn.innerText = "Unblock";
+                    blockBtn.classList.remove("block");
+                    blockBtn.classList.add("unblock");
+
+                    row.setAttribute("data-block-reason",reason);
+                    popup.remove();
+                    alert("User Blocked Successfully 🚫");
+
+                });
+
+                popup.querySelector(".cancel-block")
+                .addEventListener("click",()=>{
+
+                    popup.remove();
+
+                });
+
+            } else {
+
+                const confirmUnblock =
+                confirm("Are you sure you want to unblock this user?");
+
+                if(confirmUnblock){
+
+                    statusSpan.innerText = "Active";
+                    statusSpan.classList.remove("blocked");
+                    statusSpan.classList.add("active");
+
+                    blockBtn.innerText = "Block";
+                    blockBtn.classList.remove("unblock");
+                    blockBtn.classList.add("block");
+
+                    row.removeAttribute("data-block-reason");
+
+                }
+
+            }
+
+        });
+
+    }
 
 }
 

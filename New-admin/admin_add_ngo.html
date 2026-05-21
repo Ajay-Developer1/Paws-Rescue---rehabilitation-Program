@@ -1304,19 +1304,19 @@ const addressData = {
 const imageData = {
 
   "Hope Shelter":
-  "https://images.unsplash.com/photo-1548199973-03cce0bbc87b",
+  "https://petofy.blob.core.windows.net/petofycontainer/2021-08-27/20210827T122206927.jpeg",
 
   "Animal Care Foundation":
-  "https://images.unsplash.com/photo-1517849845537-4d257902454a",
+  "https://images.donatekart.com/campaign/cover/Support-AWT842408518.jpg",
 
   "Rescue Dog Alliance":
-  "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e",
+  "https://img.volunteerworld.com/img/default/1c61b6e2a47b08219e3e80d72fb6820302dd019d/IMG-20250226-WA0013.jpg",
 
   "Wildlife Protection":
-  "https://images.unsplash.com/photo-1444212477490-ca407925329e",
+  "https://www.globalgiving.org/pfil/26817/pict_large.jpg",
 
   "Pet Sanctuary":
-  "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8"
+  "https://www.newsonair.gov.in/wp-content/uploads/2026/01/Punjab-dog.jpg"
 
 };
 
@@ -1673,20 +1673,7 @@ editForm.onsubmit = (e)=>{
     const newCapacity =
     document.getElementById("editNgoCapacity").value;
     const editImageInput =
-document.getElementById("editNgoImage");
-
-let imageURL =
-"https://images.unsplash.com/photo-1548199973-03cce0bbc87b";
-
-if(imageInput.files[0]){
-
-  imageURL =
-  URL.createObjectURL(
-    imageInput.files[0]
-  );
-
-}
-
+    document.getElementById("editNgoImage");
 
     /* UPDATE TABLE */
 
@@ -1715,19 +1702,20 @@ if(imageInput.files[0]){
 
     if(editImageInput.files[0]){
 
-  imageData[newName] =
-  URL.createObjectURL(
-    editImageInput.files[0]
-  );
+      imageData[newName] =
+      URL.createObjectURL(
+        editImageInput.files[0]
+      );
 
-}else{
+    } else {
 
-  imageData[newName] =
-  imageData[oldName];
+      imageData[newName] =
+      imageData[oldName] ||
+      "https://images.unsplash.com/photo-1548199973-03cce0bbc87b";
 
-}
+    }
 
-delete imageData[oldName];
+    delete imageData[oldName];
 
     editModal.style.display = "none";
 
@@ -1807,6 +1795,20 @@ function setupAddNGO(){
 
     const capacity =
     document.getElementById("ngoCapacity").value;
+    const imageInput =
+    document.getElementById("ngoImageInput");
+
+    let imageURL =
+    "https://images.unsplash.com/photo-1548199973-03cce0bbc87b";
+
+    if(imageInput.files[0]){
+
+      imageURL =
+      URL.createObjectURL(
+        imageInput.files[0]
+      );
+
+    }
 
     /* CREATE ROW */
 
