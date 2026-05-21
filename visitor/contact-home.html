@@ -161,6 +161,25 @@
     </div>
   </div>
 </footer>
+<script>
+
+  // Contact Form Submit Message
+
+  const contactForm = document.querySelector(".contact-form");
+
+  contactForm.addEventListener("submit", function(e) {
+
+    e.preventDefault(); // Prevent page refresh
+
+    alert("Message sent successfully!");
+
+    // Optional: Clear form after submit
+
+    contactForm.reset();
+
+  });
+
+</script>
 <script src="nav-bar.js"></script>
 </body>
 </html>
