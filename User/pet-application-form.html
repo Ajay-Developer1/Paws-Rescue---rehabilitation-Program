@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="./pet-application-form.css">
   <link rel="stylesheet" href="./nav-bar.css">
   <link rel="stylesheet" href="./footer.css">
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
     <!-- ===== HEADER / NAVBAR ===== -->
@@ -62,108 +64,168 @@
 <main>
   <div class="application-wrapper">
 
-    <form class="application-card">
+    <form 
 
-      <h2>Pet Adoption Application</h2>
-      <p class="subtitle">
-        Help us find a loving and responsible home for our rescued animals.
-      </p>
+  class="application-card"
 
-      <!-- PERSONAL INFO -->
-      <div class="section">
-        <h3>Personal Information</h3>
+  action="/submit"
 
-        <div class="input-group">
-          <input type="text" required>
-          <label>Full Name</label>
-        </div>
+  method="POST"
 
-        <div class="input-group">
-          <input type="email" required>
-          <label>Email Address</label>
-        </div>
+  enctype="multipart/form-data"
 
-        <div class="input-group">
-          <input type="tel" required>
-          <label>Phone Number</label>
-        </div>
+  onsubmit="return validateForm()"
 
-        <div class="input-group">
-          <input type="text" required>
-          <label>City / Location</label>
-        </div>
-        <label for="" class="aadhar">upload your aadhar</label>
-        <div class="input-group">
-          <input type="file" name="" id="">
-        </div>
+>
 
-      </div>
-  
+  <h2>Pet Adoption Application</h2>
+  <p class="subtitle">
+    Help us find a loving and responsible home for our rescued animals.
+  </p>
 
+  <!-- PERSONAL INFO -->
+  <div class="section">
+    <h3>Personal Information</h3>
 
-      <!-- PET DETAILS -->
-      <div class="section">
-        <h3>Pet Details</h3>
+    <div class="input-group">
+      <input 
+        type="text"
+        name="fullname"
+        pattern="[A-Za-z\s]{3,50}"
+        title="Only letters allowed"
+        required
+      >
+      <label>Full Name</label>
+    </div>
 
-        <div class="input-group">
-          <input type="text" required>
-          <label>Pet Name / ID</label>
-        </div>
+    <div class="input-group">
+      <input 
+        type="email"
+        name="email"
+        required
+      >
+      <label>Email Address</label>
+    </div>
 
-        <div class="input-group">
-          <select required>
-            <option value="" hidden></option>
-            <option>Dog</option>
-            <option>Cat</option>
-            <option>Other</option>
-          </select>
-          <label>Type of Animal</label>
-        </div>
-      </div>
+    <div class="input-group">
+      <input 
+        type="tel"
+        name="phone"
+        pattern="[0-9]{10}"
+        maxlength="10"
+        title="Enter 10 digit phone number"
+        required
+      >
+      <label>Phone Number</label>
+    </div>
 
-      <!-- LIVING INFO -->
-      <div class="section">
-        <h3>Living Situation</h3>
+    <div class="input-group">
+      <input 
+        type="text"
+        name="city"
+        pattern="[A-Za-z\s]{2,30}"
+        title="Only letters allowed"
+        required
+      >
+      <label>City / Location</label>
+    </div>
 
-        <div class="input-group">
-          <select required>
-            <option value="" hidden></option>
-            <option>Apartment</option>
-            <option>Independent House</option>
-            <option>Farm / Open Space</option>
-          </select>
-          <label>Home Type</label>
-        </div>
+    <label for="" class="aadhar">upload your aadhar</label>
 
-        <div class="input-group">
-          <select required>
-            <option value="" hidden></option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-          <label>Do you have pets already?</label>
-        </div>
+    <div class="input-group">
+      <input 
+        type="file"
+        name="aadhar"
+        accept=".jpg,.jpeg,.png,.pdf"
+        required
+      >
+    </div>
 
-        <div class="input-group textarea">
-          <textarea required></textarea>
-          <label>Why do you want to adopt this pet?</label>
-        </div>
-      </div>
+  </div>
 
-      <!-- AGREEMENT -->
-      <div class="agreement">
-        <input type="checkbox" required>
-        <span>
-          I agree to provide proper care, medical support, and a safe environment for the adopted animal.
-        </span>
-      </div>
+  <!-- PET DETAILS -->
+  <div class="section">
+    <h3>Pet Details</h3>
 
-      <!-- SUBMIT -->
-      <button type="submit" class="submit-btn">
-        Submit Application
-      </button>
+    <div class="input-group">
+      <input 
+        type="text"
+        name="petname"
+        pattern="[A-Za-z0-9\s]{2,30}"
+        title="Only letters and numbers allowed"
+        required
+      >
+      <label>Pet Name / ID</label>
+    </div>
 
-    </form>
+    <div class="input-group">
+      <select name="animaltype" required>
+        <option value="" hidden></option>
+        <option>Dog</option>
+        <option>Cat</option>
+        <option>Other</option>
+      </select>
+
+      <label>Type of Animal</label>
+    </div>
+  </div>
+
+  <!-- LIVING INFO -->
+  <div class="section">
+    <h3>Living Situation</h3>
+
+    <div class="input-group">
+      <select name="hometype" required>
+        <option value="" hidden></option>
+        <option>Apartment</option>
+        <option>Independent House</option>
+        <option>Farm / Open Space</option>
+      </select>
+
+      <label>Home Type</label>
+    </div>
+
+    <div class="input-group">
+      <select name="existingpets" required>
+        <option value="" hidden></option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label>Do you have pets already?</label>
+    </div>
+
+    <div class="input-group textarea">
+      <textarea 
+        name="reason"
+        minlength="20"
+        maxlength="300"
+        required
+      ></textarea>
+
+      <label>Why do you want to adopt this pet?</label>
+    </div>
+  </div>
+
+  <!-- AGREEMENT -->
+  <div class="agreement">
+    <input 
+      type="checkbox"
+      name="agreement"
+      required
+    >
+
+    <span>
+      I agree to provide proper care, medical support, and a safe environment for the adopted animal.
+    </span>
+  </div>
+
+  <!-- SUBMIT -->
+  <button type="submit" class="submit-btn">
+    Submit Application
+  </button>
+
+</form>
 
   </div>
 </main>
@@ -175,6 +237,24 @@
     </div>
   </div>
 </footer>
+<script>
+function validateForm() {
+
+  const form = document.querySelector(".application-card");
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return false;
+  }
+
+  alert("Your form submitted successfully!");
+
+  form.reset();
+
+  return false;
+}
+</script>
+
 <script src="./nav-bar.js"></script>
 
 </body>
